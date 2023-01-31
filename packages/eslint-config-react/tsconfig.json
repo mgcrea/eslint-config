@@ -1,0 +1,14 @@
+{
+  "extends": "@tsconfig/node-lts-strictest-esm/tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "declaration": true,
+    "resolveJsonModule": true,
+    "baseUrl": "./",
+    "paths": {
+      "src/*": ["src/*"],
+      "test/*": ["test/*"]
+    }
+  },
+  "include": ["src", "test"]
+}
