@@ -1,12 +1,10 @@
 {
-  "release-it": {
-    "plugins": {
-      "@release-it-plugins/workspaces": {
-        "workspaces": ["packages/*"]
-      }
-    },
-    "npm": false
+  "plugins": {
+    "@release-it-plugins/workspaces": {
+      "workspaces": ["packages/*"]
+    }
   },
+  "npm": false,
   "git": {
     "commitMessage": "chore(release): cut the v${version} release",
     "tagAnnotation": "v${version} release"
