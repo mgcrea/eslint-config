@@ -15,5 +15,10 @@ module.exports = {
       version: "detect",
     },
   },
-  rules: {},
+  rules: {
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { ignoreRestSiblings: true, argsIgnorePattern: "^_" },
+    ],
+  },
 };
