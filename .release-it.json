@@ -1,0 +1,16 @@
+{
+  "release-it": {
+    "plugins": {
+      "@release-it-plugins/workspaces": true
+    },
+    "npm": false
+  },
+  "git": {
+    "commitMessage": "chore(release): cut the v${version} release",
+    "tagAnnotation": "v${version} release"
+  },
+  "github": {
+    "release": true,
+    "releaseName": "v${version}"
+  }
+}
