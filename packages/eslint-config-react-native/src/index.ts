@@ -9,10 +9,9 @@ module.exports = {
     "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
     "plugin:testing-library/react",
-    "plugin:@react-native",
   ],
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint"],
+  plugins: ["@typescript-eslint", "@react-native"],
   settings: {
     react: {
       version: "detect",
