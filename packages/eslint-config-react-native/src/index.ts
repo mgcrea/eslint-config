@@ -24,4 +24,10 @@ module.exports = {
       { ignoreRestSiblings: true, argsIgnorePattern: "^_" },
     ],
   },
+  globals: {
+    __DEV__: true,
+    module: false,
+    process: false,
+    require: false,
+  },
 };
