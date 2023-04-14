@@ -19,22 +19,25 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.55.0",
-    "@typescript-eslint/parser": "^5.55.0",
-    "eslint-config-prettier": "^8.7.0",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-testing-library": "^5.10.2"
+    "eslint-plugin-testing-library": "^5.10.3"
   },
   "devDependencies": {
-    "@tsconfig/node-lts-strictest-esm": "^18.12.1",
-    "@types/node": "^18.15.2",
-    "eslint": "^8.36.0",
-    "prettier": "^2.8.4",
+    "@tsconfig/esm": "^1.0.2",
+    "@tsconfig/node-lts": "^18.12.1",
+    "@tsconfig/strictest": "^2.0.0",
+    "@types/eslint": "^8.37.0",
+    "@types/node": "^18.15.11",
+    "eslint": "^8.38.0",
+    "prettier": "^2.8.7",
     "prettier-plugin-organize-imports": "^3.2.2",
-    "rimraf": "^4.4.0",
-    "tsup": "^6.6.3",
-    "tsx": "^3.12.5",
-    "typescript": "^4.9.5",
-    "vitest": "^0.29.2"
+    "rimraf": "^5.0.0",
+    "tsup": "^6.7.0",
+    "tsx": "^3.12.6",
+    "typescript": "^5.0.4",
+    "vitest": "^0.30.1"
   }
 }

@@ -1,0 +1,43 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`module > should export an eslint config 1`] = `
+{
+  "default": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended",
+      "plugin:prettier/recommended",
+      "plugin:testing-library/react",
+    ],
+    "globals": {
+      "__DEV__": true,
+      "module": false,
+      "process": false,
+      "require": false,
+    },
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint",
+      "@react-native",
+      "react-native",
+    ],
+    "rules": {
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          "argsIgnorePattern": "^_",
+          "ignoreRestSiblings": true,
+        },
+      ],
+      "react/react-in-jsx-scope": "off",
+    },
+    "settings": {
+      "react": {
+        "version": "detect",
+      },
+    },
+  },
+}
+`;

@@ -1,9 +1,10 @@
 {
-  "extends": "@tsconfig/node-lts-strictest-esm/tsconfig.json",
+  "extends": ["@tsconfig/node-lts", "@tsconfig/strictest", "@tsconfig/esm"],
   "compilerOptions": {
+    "module": "CommonJS",
     "declaration": true,
     "resolveJsonModule": true,
-    "outDir": "./dist",
+    "verbatimModuleSyntax": false,
     "baseUrl": "./",
     "paths": {
       "src/*": ["src/*"],
