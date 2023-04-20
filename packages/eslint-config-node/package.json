@@ -10,6 +10,14 @@
   "files": [
     "dist"
   ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.js"
+    },
+    "./test": {
+      "require": "./dist/test/index.js"
+    }
+  },
   "scripts": {
     "start": "eslint --config dist/index.js",
     "build": "tsup ./src --clean",
