@@ -9,7 +9,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "eslint --config dist/index.js",
-    "build": "mkdir dist 2> /dev/null; cp src/index.ts dist/index.js",
+    "build": "tsup ./src --clean",
     "prettify": "prettier --write src/ test/",
     "spec": "vitest --run",
     "lint": "eslint src/ test/",
@@ -19,18 +19,19 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.58.0",
-    "@typescript-eslint/parser": "^5.58.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-testing-library": "^5.10.3"
+    "eslint-plugin-testing-library": "^5.10.3",
+    "eslint-plugin-vitest": "^0.1.4"
   },
   "devDependencies": {
     "@tsconfig/esm": "^1.0.2",
     "@tsconfig/node-lts": "^18.12.1",
     "@tsconfig/strictest": "^2.0.0",
     "@types/eslint": "^8.37.0",
-    "@types/node": "^18.15.11",
+    "@types/node": "^18.15.12",
     "eslint": "^8.38.0",
     "prettier": "^2.8.7",
     "prettier-plugin-organize-imports": "^3.2.2",

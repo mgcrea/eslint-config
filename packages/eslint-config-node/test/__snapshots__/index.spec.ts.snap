@@ -28,5 +28,29 @@ exports[`module > should export an eslint config 1`] = `
       },
     },
   },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:testing-library/react",
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+  ],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "ignoreRestSiblings": true,
+      },
+    ],
+  },
+  "settings": {
+    "react": {
+      "version": "detect",
+    },
+  },
 }
 `;

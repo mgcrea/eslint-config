@@ -1,15 +1,11 @@
 {
-  "extends": "./../../tsconfig.base.json",
+  "extends": [
+    "@tsconfig/node-lts/tsconfig.json",
+    "@tsconfig/strictest/tsconfig.json",
+    "@tsconfig/esm/tsconfig.json"
+  ],
   "compilerOptions": {
-    "module": "CommonJS",
-    "declaration": true,
-    "resolveJsonModule": true,
-    "verbatimModuleSyntax": false,
-    "baseUrl": "./",
-    "paths": {
-      "src/*": ["src/*"],
-      "test/*": ["test/*"]
-    }
+    "module": "None"
   },
   "include": ["src", "test"]
 }

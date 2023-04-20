@@ -9,7 +9,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "eslint --config dist/index.js",
-    "build": "mkdir dist 2> /dev/null; cp src/index.ts dist/index.js",
+    "build": "tsup ./src --clean",
     "prettify": "prettier --write src/ test/",
     "spec": "vitest --run",
     "lint": "eslint src/ test/",
@@ -23,9 +23,10 @@
     "@typescript-eslint/parser": "^5.58.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-testing-library": "^5.10.3"
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-testing-library": "^5.10.3",
+    "eslint-plugin-vitest": "^0.1.4"
   },
   "devDependencies": {
     "@tsconfig/esm": "^1.0.2",

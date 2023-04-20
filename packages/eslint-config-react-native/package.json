@@ -9,7 +9,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "eslint --config dist/index.js",
-    "build": "mkdir dist 2> /dev/null; cp src/index.ts dist/index.js",
+    "build": "tsup ./src --clean",
     "prettify": "prettier --write src/ test/",
     "spec": "vitest --run",
     "lint": "eslint src/ test/",
