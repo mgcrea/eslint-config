@@ -12,6 +12,7 @@
     "prettycheck": "prettier --check packages/",
     "prettify": "prettier --write packages/",
     "typecheck": "scripts/runPackages.sh 'npm run typecheck'",
+    "build": "scripts/runPackages.sh 'npm run build'",
     "test": "npm run lint && npm run prettycheck && npm run typecheck"
   },
   "devDependencies": {
