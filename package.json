@@ -10,7 +10,8 @@
   "scripts": {
     "lint": "eslint packages/",
     "prettycheck": "prettier --check packages/",
-    "typecheck": "echo 1",
+    "prettify": "prettier --write packages/",
+    "typecheck": "scripts/runPackages.sh 'npm run typecheck'",
     "test": "npm run lint && npm run prettycheck && npm run typecheck"
   },
   "devDependencies": {
