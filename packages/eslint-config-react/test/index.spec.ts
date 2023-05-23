@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { describe, expect, it } from "vitest";
-import * as module from "./../src";
+const module = require("./../src/index.ts");
 
 describe("module", () => {
   it("should export an eslint config", () => {
