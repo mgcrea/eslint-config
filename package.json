@@ -8,9 +8,9 @@
   "license": "MIT",
   "type": "commonjs",
   "scripts": {
-    "lint": "eslint packages/",
-    "prettycheck": "prettier --check packages/",
-    "prettify": "prettier --write packages/",
+    "lint": "scripts/runPackages.sh 'npm run lint'",
+    "prettycheck": "scripts/runPackages.sh 'npm run prettycheck'",
+    "prettify": "scripts/runPackages.sh 'npm run prettify'",
     "typecheck": "scripts/runPackages.sh 'npm run typecheck'",
     "build": "scripts/runPackages.sh 'npm run build'",
     "test": "npm run lint && npm run prettycheck && npm run typecheck"
