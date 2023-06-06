@@ -33,7 +33,16 @@ Standard eslint config to cleanup your dependencies!
 ```sh
 npm --save-dev @mgcrea/eslint-config-node
 # or
-pnpm add --dev @mgcrea/eslint-config-node
+pnpm add --save-dev @mgcrea/eslint-config-node
+```
+
+- `.eslintrc`
+
+```json
+{
+  "extends": ["@mgcrea/node"],
+  "rules": {}
+}
 ```
 
 ## Templates

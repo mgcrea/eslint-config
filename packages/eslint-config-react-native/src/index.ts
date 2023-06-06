@@ -8,7 +8,6 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
-    "plugin:testing-library/react",
   ],
   parser: "@typescript-eslint/parser",
   plugins: ["@typescript-eslint", "@react-native", "react-native"],
@@ -17,6 +16,12 @@ module.exports = {
       version: "detect",
     },
   },
+  overrides: [
+    {
+      files: ["*.{spec,test}.{js,ts,tsx}", "**/__{mocks,tests}__/**/*.{js,ts,tsx}"],
+      extends: ["plugin:testing-library/react"],
+    },
+  ],
   rules: {
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/no-unused-vars": [
