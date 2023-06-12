@@ -8,6 +8,9 @@ module.exports = {
     "plugin:prettier/recommended",
   ],
   parser: "@typescript-eslint/parser",
+  parserOptions: {
+    warnOnUnsupportedTypeScriptVersion: false,
+  },
   plugins: ["@typescript-eslint"],
   settings: {
     react: {
