@@ -22,7 +22,10 @@ module.exports = {
   overrides: [
     {
       files: ["*.{spec,test}.{js,ts,tsx}", "**/__{mocks,tests}__/**/*.{js,ts,tsx}"],
-      extends: ["plugin:testing-library/react"],
+      extends: ["plugin:testing-library/react", "plugin:vitest/recommended"],
+      rules: {
+        "vitest/no-focused-tests": ["error"],
+      },
     },
   ],
   rules: {

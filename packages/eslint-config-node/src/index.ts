@@ -21,6 +21,9 @@ module.exports = {
     {
       files: ["*.{spec,test}.{js,ts,tsx}", "**/__{mocks,tests}__/**/*.{js,ts,tsx}"],
       extends: ["plugin:vitest/recommended"],
+      rules: {
+        "vitest/no-focused-tests": ["error"],
+      },
     },
   ],
   rules: {
