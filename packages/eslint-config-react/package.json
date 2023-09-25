@@ -1,6 +1,6 @@
 {
   "name": "@mgcrea/eslint-config-react",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "Eslint config for React applications",
   "author": "Olivier Louvignes <olivier@mgcrea.io>",
   "repository": "github:mgcrea/eslint-config",
