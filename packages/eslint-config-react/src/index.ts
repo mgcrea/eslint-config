@@ -32,7 +32,7 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/no-unused-vars": [
       "warn",
-      { ignoreRestSiblings: true, argsIgnorePattern: "^_" },
+      { ignoreRestSiblings: true, argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
     ],
   },
 };
