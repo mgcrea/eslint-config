@@ -30,7 +30,8 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@mgcrea/eslint-config-react": "0.9.1"
+    "@mgcrea/eslint-config-react": "0.9.1",
+    "eslint-plugin-astro": "^0.30.0"
   },
   "devDependencies": {
     "@tsconfig/esm": "^1.0.4",
@@ -39,7 +40,6 @@
     "@types/eslint": "^8.44.8",
     "@types/node": "^20.10.4",
     "eslint": "^8.55.0",
-    "eslint-plugin-astro": "^0.30.0",
     "prettier": "^3.1.0",
     "prettier-plugin-organize-imports": "^3.2.4",
     "rimraf": "^5.0.5",
