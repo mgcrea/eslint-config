@@ -45,13 +45,14 @@ pnpm add --save-dev @mgcrea/eslint-config-node
 }
 ```
 
-## Templates
+## Presets
 
 Currently supported presets include:
 
-- `@mgcrea/eslint-config-node`
-- `@mgcrea/eslint-config-react`
-- `@mgcrea/eslint-config-react-native`
+- `@mgcrea/eslint-config-astro` for [Astro](https://astro.build)
+- `@mgcrea/eslint-config-node` for [Node.js](https://nodejs.org)
+- `@mgcrea/eslint-config-react` for [React](https://react.dev)
+- `@mgcrea/eslint-config-react-native` for [React Native](https://reactnative.dev)
 
 ## Authors
 
