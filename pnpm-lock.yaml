@@ -54,7 +54,7 @@ importers:
   packages/eslint-config-astro:
     dependencies:
       '@mgcrea/eslint-config-react':
-        specifier: 0.9.1
+        specifier: 0.9.3
         version: link:../eslint-config-react
       eslint-plugin-astro:
         specifier: ^0.30.0
