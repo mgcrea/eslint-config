@@ -1,6 +1,6 @@
 {
   "name": "@mgcrea/eslint-config-astro",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "Eslint config for Astro websites",
   "author": "Olivier Louvignes <olivier@mgcrea.io>",
   "repository": "github:mgcrea/eslint-config",
@@ -30,7 +30,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@mgcrea/eslint-config-react": "0.9.4",
+    "@mgcrea/eslint-config-react": "0.9.5",
     "eslint-plugin-astro": "^0.31.1"
   },
   "devDependencies": {
