@@ -1,6 +1,6 @@
 {
   "name": "@mgcrea/eslint-config",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "description": "Eslint configs by @mgcrea",
   "private": true,
   "author": "Olivier Louvignes <olivier@mgcrea.io>",
