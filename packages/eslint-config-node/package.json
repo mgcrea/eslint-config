@@ -26,7 +26,8 @@
     "lint": "eslint src/ test/ --report-unused-disable-directives --max-warnings 0",
     "prettycheck": "prettier --check src/ test/",
     "typecheck": "tsc --noEmit",
-    "test": "npm run lint && npm run prettycheck && npm run typecheck && npm run spec",
+    "validate": "npm run build && eslint --config dist/index.ts .",
+    "test": "npm run lint && npm run prettycheck && npm run typecheck && npm run spec && npm run validate",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
@@ -35,7 +36,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-testing-library": "^6.2.2",
-    "eslint-plugin-vitest": "^0.5.4"
+    "eslint-plugin-vitest": "~0.4.1"
   },
   "devDependencies": {
     "@tsconfig/esm": "^1.0.4",
