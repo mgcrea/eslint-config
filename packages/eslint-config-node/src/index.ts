@@ -1,35 +1,34 @@
-/* eslint-disable no-undef */
+import eslint from "@eslint/js";
+import prettierRecommended from "eslint-plugin-prettier/recommended";
+import vitest from "eslint-plugin-vitest";
+import tseslint, { type Config } from "typescript-eslint";
 
-/** @type {import('eslint').Linter.Config} */
-module.exports = {
-  extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-  ],
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    warnOnUnsupportedTypeScriptVersion: false,
-  },
-  plugins: ["@typescript-eslint"],
-  settings: {
-    react: {
-      version: "detect",
+const config: Config = tseslint.config(
+  eslint.configs.recommended,
+  ...tseslint.configs.strictTypeChecked,
+  ...tseslint.configs.stylisticTypeChecked,
+  prettierRecommended,
+  {
+    rules: {
+      "@typescript-eslint/restrict-template-expressions": ["warn", { allowNumber: true }],
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { ignoreRestSiblings: true, argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      ],
+      "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
+      "@typescript-eslint/no-unnecessary-condition": ["warn"],
+      "@typescript-eslint/ban-ts-comment": ["error", { minimumDescriptionLength: 3 }],
     },
   },
-  overrides: [
-    {
-      files: ["*.{spec,test}.{js,ts,tsx}", "**/__{mocks,tests}__/**/*.{js,ts,tsx}"],
-      extends: ["plugin:vitest/recommended"],
-      rules: {
-        "vitest/no-focused-tests": ["error"],
-      },
+  {
+    files: ["**/*.{mock,spec,test}.{js,ts,tsx}", "**/__{mocks,tests}__/**/*.{js,ts,tsx}"],
+    plugins: {
+      vitest,
     },
-  ],
-  rules: {
-    "@typescript-eslint/no-unused-vars": [
-      "warn",
-      { ignoreRestSiblings: true, argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
-    ],
+    rules: {
+      ...vitest.configs.recommended.rules,
+    },
   },
-};
+);
+
+export default config as Config[];

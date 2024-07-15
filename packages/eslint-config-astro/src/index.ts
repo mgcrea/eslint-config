@@ -1,18 +1,7 @@
-/* eslint-disable no-undef */
+import baseConfig from "@mgcrea/eslint-config-react";
+import eslintPluginAstro from "eslint-plugin-astro";
+import type { Config } from "typescript-eslint";
 
-/** @type {import('eslint').Linter.Config} */
-module.exports = {
-  extends: ["@mgcrea/eslint-config-react", "plugin:astro/recommended"],
-  overrides: [
-    {
-      files: ["*.astro"],
-      parser: "astro-eslint-parser",
-      parserOptions: {
-        parser: "@typescript-eslint/parser",
-        extraFileExtensions: [".astro"],
-      },
-      rules: {},
-    },
-  ],
-  rules: {},
-};
+const config = [...baseConfig, ...eslintPluginAstro.configs["flat/recommended"]] as Config[];
+
+export default config;
