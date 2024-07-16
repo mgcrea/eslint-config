@@ -14,12 +14,12 @@
     ".": {
       "import": "./dist/index.js",
       "require": "./dist/index.cjs",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/src/index.d.ts"
     }
   },
   "scripts": {
     "start": "eslint --config dist/index.js",
-    "build": "tsup",
+    "build": "tsup ./src --clean",
     "prettify": "prettier --write src/ test/",
     "spec": "vitest --run",
     "lint": "eslint src/ test/",

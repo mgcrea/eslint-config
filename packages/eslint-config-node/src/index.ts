@@ -3,7 +3,9 @@ import prettierRecommended from "eslint-plugin-prettier/recommended";
 import vitest from "eslint-plugin-vitest";
 import tseslint, { type Config } from "typescript-eslint";
 
-const config: Config = tseslint.config(
+type NoPromise<T> = T extends Promise<unknown> ? never : T;
+
+const config: NoPromise<Config> = tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.strictTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
@@ -27,8 +29,9 @@ const config: Config = tseslint.config(
     },
     rules: {
       ...vitest.configs.recommended.rules,
+      "@typescript-eslint/no-unsafe-assignment": "off",
     },
   },
 );
 
-export default config as Config[];
+export default config;
