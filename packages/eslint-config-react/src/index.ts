@@ -1,11 +1,11 @@
 import { fixupPluginRules } from "@eslint/compat";
 import eslint from "@eslint/js";
+import vitest from "@vitest/eslint-plugin";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import testingLibrary from "eslint-plugin-testing-library";
-import vitest from "eslint-plugin-vitest";
 import globals from "globals";
 import tseslint, { type Config } from "typescript-eslint";
 
@@ -48,9 +48,12 @@ const config: NoPromise<Config> = tseslint.config(
     files: ["*.{mock,spec,test}.{js,ts,tsx}", "**/__{mocks,tests}__/**/*.{js,ts,tsx}"],
     plugins: {
       vitest,
-      "testing-library": fixupPluginRules(testingLibrary),
+      "testing-library": fixupPluginRules({
+        rules: testingLibrary.rules,
+      }),
     },
     rules: {
+      ...testingLibrary.configs["flat/react"].rules,
       ...vitest.configs.recommended.rules,
       "@typescript-eslint/no-unsafe-assignment": "off",
     },

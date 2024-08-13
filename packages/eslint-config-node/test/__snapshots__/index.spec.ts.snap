@@ -72,7 +72,7 @@ exports[`module > should export an eslint config 1`] = `
       "parser": {
         "meta": {
           "name": "typescript-eslint/parser",
-          "version": "8.0.0-alpha.44",
+          "version": "8.1.0",
         },
         "parseForESLint": [Function],
       },
@@ -614,6 +614,7 @@ exports[`module > should export an eslint config 1`] = `
               "@typescript-eslint/no-unnecessary-type-arguments": "error",
               "@typescript-eslint/no-unnecessary-type-assertion": "error",
               "@typescript-eslint/no-unnecessary-type-constraint": "error",
+              "@typescript-eslint/no-unnecessary-type-parameters": "error",
               "@typescript-eslint/no-unsafe-argument": "error",
               "@typescript-eslint/no-unsafe-assignment": "error",
               "@typescript-eslint/no-unsafe-call": "error",
@@ -656,12 +657,17 @@ exports[`module > should export an eslint config 1`] = `
                   "allowRegExp": false,
                 },
               ],
+              "@typescript-eslint/return-await": [
+                "error",
+                "error-handling-correctness-only",
+              ],
               "@typescript-eslint/triple-slash-reference": "error",
               "@typescript-eslint/unbound-method": "error",
               "@typescript-eslint/unified-signatures": "error",
               "@typescript-eslint/use-unknown-in-catch-callback-variable": "error",
               "no-array-constructor": "off",
               "no-implied-eval": "off",
+              "no-return-await": "off",
               "no-throw-literal": "off",
               "no-unused-expressions": "off",
               "no-unused-vars": "off",
@@ -693,6 +699,7 @@ exports[`module > should export an eslint config 1`] = `
               "@typescript-eslint/no-unnecessary-template-expression": "error",
               "@typescript-eslint/no-unnecessary-type-arguments": "error",
               "@typescript-eslint/no-unnecessary-type-assertion": "error",
+              "@typescript-eslint/no-unnecessary-type-parameters": "error",
               "@typescript-eslint/no-unsafe-argument": "error",
               "@typescript-eslint/no-unsafe-assignment": "error",
               "@typescript-eslint/no-unsafe-call": "error",
@@ -726,9 +733,14 @@ exports[`module > should export an eslint config 1`] = `
                   "allowRegExp": false,
                 },
               ],
+              "@typescript-eslint/return-await": [
+                "error",
+                "error-handling-correctness-only",
+              ],
               "@typescript-eslint/unbound-method": "error",
               "@typescript-eslint/use-unknown-in-catch-callback-variable": "error",
               "no-implied-eval": "off",
+              "no-return-await": "off",
               "no-throw-literal": "off",
               "prefer-promise-reject-errors": "off",
               "require-await": "off",
@@ -807,7 +819,7 @@ exports[`module > should export an eslint config 1`] = `
         },
         "meta": {
           "name": "@typescript-eslint/eslint-plugin",
-          "version": "8.0.0-alpha.44",
+          "version": "8.1.0",
         },
         "rules": {
           "adjacent-overload-signatures": {
@@ -5308,6 +5320,7 @@ You must still type the parameters of the function.",
                 "spread": "Expected a non-Promise value to be spreaded in an object.",
                 "voidReturnArgument": "Promise returned in function argument where a void return was expected.",
                 "voidReturnAttribute": "Promise-returning function provided to attribute where a void return was expected.",
+                "voidReturnInheritedMethod": "Promise-returning method provided where a void return was expected by extended/implemented type '{{ heritageTypeName }}'.",
                 "voidReturnProperty": "Promise-returning function provided to property where a void return was expected.",
                 "voidReturnReturnValue": "Promise-returning function provided to return value where a void return was expected.",
                 "voidReturnVariable": "Promise-returning function provided to variable where a void return was expected.",
@@ -5334,6 +5347,9 @@ You must still type the parameters of the function.",
                               "type": "boolean",
                             },
                             "attributes": {
+                              "type": "boolean",
+                            },
+                            "inheritedMethods": {
                               "type": "boolean",
                             },
                             "properties": {
@@ -6237,12 +6253,13 @@ You must still type the parameters of the function.",
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Disallow type parameters that only appear once",
+                "description": "Disallow type parameters that aren't used multiple times",
+                "recommended": "strict",
                 "requiresTypeChecking": true,
                 "url": "https://typescript-eslint.io/rules/no-unnecessary-type-parameters",
               },
               "messages": {
-                "sole": "Type parameter {{name}} is used only once.",
+                "sole": "Type parameter {{name}} is {{uses}} in the {{descriptor}} signature.",
               },
               "schema": [],
               "type": "problem",
@@ -6398,9 +6415,9 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
                 "url": "https://typescript-eslint.io/rules/no-unsafe-return",
               },
               "messages": {
-                "unsafeReturn": "Unsafe return of an {{type}} typed value.",
+                "unsafeReturn": "Unsafe return of a value of type {{type}}.",
                 "unsafeReturnAssignment": "Unsafe return of type \`{{sender}}\` from function with return type \`{{receiver}}\`.",
-                "unsafeReturnThis": "Unsafe return of an \`{{type}}\` typed value. \`this\` is typed as \`any\`.
+                "unsafeReturnThis": "Unsafe return of a value of type \`{{type}}\`. \`this\` is typed as \`any\`.
 You can try to fix this by turning on the \`noImplicitThis\` compiler option, or adding a \`this\` parameter to the function.",
               },
               "schema": [],
@@ -7792,6 +7809,11 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
               "docs": {
                 "description": "Enforce consistent awaiting of returned promises",
                 "extendsBaseRule": "no-return-await",
+                "recommended": {
+                  "strict": [
+                    "error-handling-correctness-only",
+                  ],
+                },
                 "requiresTypeChecking": true,
                 "url": "https://typescript-eslint.io/rules/return-await",
               },
@@ -7810,6 +7832,7 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
                     "in-try-catch",
                     "always",
                     "never",
+                    "error-handling-correctness-only",
                   ],
                   "type": "string",
                 },
@@ -8306,6 +8329,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
       "@typescript-eslint/no-unnecessary-type-arguments": "error",
       "@typescript-eslint/no-unnecessary-type-assertion": "error",
       "@typescript-eslint/no-unnecessary-type-constraint": "error",
+      "@typescript-eslint/no-unnecessary-type-parameters": "error",
       "@typescript-eslint/no-unsafe-argument": "error",
       "@typescript-eslint/no-unsafe-assignment": "error",
       "@typescript-eslint/no-unsafe-call": "error",
@@ -8348,12 +8372,17 @@ If your function does not access \`this\`, you can annotate it with \`this: void
           "allowRegExp": false,
         },
       ],
+      "@typescript-eslint/return-await": [
+        "error",
+        "error-handling-correctness-only",
+      ],
       "@typescript-eslint/triple-slash-reference": "error",
       "@typescript-eslint/unbound-method": "error",
       "@typescript-eslint/unified-signatures": "error",
       "@typescript-eslint/use-unknown-in-catch-callback-variable": "error",
       "no-array-constructor": "off",
       "no-implied-eval": "off",
+      "no-return-await": "off",
       "no-throw-literal": "off",
       "no-unused-expressions": "off",
       "no-unused-vars": "off",
@@ -8367,7 +8396,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
       "parser": {
         "meta": {
           "name": "typescript-eslint/parser",
-          "version": "8.0.0-alpha.44",
+          "version": "8.1.0",
         },
         "parseForESLint": [Function],
       },
@@ -8909,6 +8938,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
               "@typescript-eslint/no-unnecessary-type-arguments": "error",
               "@typescript-eslint/no-unnecessary-type-assertion": "error",
               "@typescript-eslint/no-unnecessary-type-constraint": "error",
+              "@typescript-eslint/no-unnecessary-type-parameters": "error",
               "@typescript-eslint/no-unsafe-argument": "error",
               "@typescript-eslint/no-unsafe-assignment": "error",
               "@typescript-eslint/no-unsafe-call": "error",
@@ -8951,12 +8981,17 @@ If your function does not access \`this\`, you can annotate it with \`this: void
                   "allowRegExp": false,
                 },
               ],
+              "@typescript-eslint/return-await": [
+                "error",
+                "error-handling-correctness-only",
+              ],
               "@typescript-eslint/triple-slash-reference": "error",
               "@typescript-eslint/unbound-method": "error",
               "@typescript-eslint/unified-signatures": "error",
               "@typescript-eslint/use-unknown-in-catch-callback-variable": "error",
               "no-array-constructor": "off",
               "no-implied-eval": "off",
+              "no-return-await": "off",
               "no-throw-literal": "off",
               "no-unused-expressions": "off",
               "no-unused-vars": "off",
@@ -8988,6 +9023,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
               "@typescript-eslint/no-unnecessary-template-expression": "error",
               "@typescript-eslint/no-unnecessary-type-arguments": "error",
               "@typescript-eslint/no-unnecessary-type-assertion": "error",
+              "@typescript-eslint/no-unnecessary-type-parameters": "error",
               "@typescript-eslint/no-unsafe-argument": "error",
               "@typescript-eslint/no-unsafe-assignment": "error",
               "@typescript-eslint/no-unsafe-call": "error",
@@ -9021,9 +9057,14 @@ If your function does not access \`this\`, you can annotate it with \`this: void
                   "allowRegExp": false,
                 },
               ],
+              "@typescript-eslint/return-await": [
+                "error",
+                "error-handling-correctness-only",
+              ],
               "@typescript-eslint/unbound-method": "error",
               "@typescript-eslint/use-unknown-in-catch-callback-variable": "error",
               "no-implied-eval": "off",
+              "no-return-await": "off",
               "no-throw-literal": "off",
               "prefer-promise-reject-errors": "off",
               "require-await": "off",
@@ -9102,7 +9143,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         },
         "meta": {
           "name": "@typescript-eslint/eslint-plugin",
-          "version": "8.0.0-alpha.44",
+          "version": "8.1.0",
         },
         "rules": {
           "adjacent-overload-signatures": {
@@ -13603,6 +13644,7 @@ You must still type the parameters of the function.",
                 "spread": "Expected a non-Promise value to be spreaded in an object.",
                 "voidReturnArgument": "Promise returned in function argument where a void return was expected.",
                 "voidReturnAttribute": "Promise-returning function provided to attribute where a void return was expected.",
+                "voidReturnInheritedMethod": "Promise-returning method provided where a void return was expected by extended/implemented type '{{ heritageTypeName }}'.",
                 "voidReturnProperty": "Promise-returning function provided to property where a void return was expected.",
                 "voidReturnReturnValue": "Promise-returning function provided to return value where a void return was expected.",
                 "voidReturnVariable": "Promise-returning function provided to variable where a void return was expected.",
@@ -13629,6 +13671,9 @@ You must still type the parameters of the function.",
                               "type": "boolean",
                             },
                             "attributes": {
+                              "type": "boolean",
+                            },
+                            "inheritedMethods": {
                               "type": "boolean",
                             },
                             "properties": {
@@ -14532,12 +14577,13 @@ You must still type the parameters of the function.",
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Disallow type parameters that only appear once",
+                "description": "Disallow type parameters that aren't used multiple times",
+                "recommended": "strict",
                 "requiresTypeChecking": true,
                 "url": "https://typescript-eslint.io/rules/no-unnecessary-type-parameters",
               },
               "messages": {
-                "sole": "Type parameter {{name}} is used only once.",
+                "sole": "Type parameter {{name}} is {{uses}} in the {{descriptor}} signature.",
               },
               "schema": [],
               "type": "problem",
@@ -14693,9 +14739,9 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
                 "url": "https://typescript-eslint.io/rules/no-unsafe-return",
               },
               "messages": {
-                "unsafeReturn": "Unsafe return of an {{type}} typed value.",
+                "unsafeReturn": "Unsafe return of a value of type {{type}}.",
                 "unsafeReturnAssignment": "Unsafe return of type \`{{sender}}\` from function with return type \`{{receiver}}\`.",
-                "unsafeReturnThis": "Unsafe return of an \`{{type}}\` typed value. \`this\` is typed as \`any\`.
+                "unsafeReturnThis": "Unsafe return of a value of type \`{{type}}\`. \`this\` is typed as \`any\`.
 You can try to fix this by turning on the \`noImplicitThis\` compiler option, or adding a \`this\` parameter to the function.",
               },
               "schema": [],
@@ -16087,6 +16133,11 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
               "docs": {
                 "description": "Enforce consistent awaiting of returned promises",
                 "extendsBaseRule": "no-return-await",
+                "recommended": {
+                  "strict": [
+                    "error-handling-correctness-only",
+                  ],
+                },
                 "requiresTypeChecking": true,
                 "url": "https://typescript-eslint.io/rules/return-await",
               },
@@ -16105,6 +16156,7 @@ You can try to fix this by turning on the \`noImplicitThis\` compiler option, or
                     "in-try-catch",
                     "always",
                     "never",
+                    "error-handling-correctness-only",
                   ],
                   "type": "string",
                 },
@@ -16607,7 +16659,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
         },
         "meta": {
           "name": "eslint-plugin-prettier",
-          "version": "5.1.3",
+          "version": "5.2.1",
         },
         "rules": {
           "prettier": {
@@ -16834,309 +16886,257 @@ If your function does not access \`this\`, you can annotate it with \`this: void
     },
   },
   {
+    "rules": {
+      "@typescript-eslint/ban-ts-comment": [
+        "error",
+        {
+          "minimumDescriptionLength": 3,
+        },
+      ],
+      "@typescript-eslint/consistent-type-definitions": [
+        "warn",
+        "type",
+      ],
+      "@typescript-eslint/no-unnecessary-condition": [
+        "warn",
+      ],
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          "argsIgnorePattern": "^_",
+          "ignoreRestSiblings": true,
+          "varsIgnorePattern": "^_",
+        },
+      ],
+      "@typescript-eslint/restrict-template-expressions": [
+        "warn",
+        {
+          "allowNumber": true,
+        },
+      ],
+    },
+  },
+  {
     "files": [
-      "*.{mock,spec,test}.{js,ts,tsx}",
+      "**/*.{mock,spec,test}.{js,ts,tsx}",
       "**/__{mocks,tests}__/**/*.{js,ts,tsx}",
     ],
-    "languageOptions": {
-      "globals": {
-        "afterAll": false,
-        "afterEach": false,
-        "beforeAll": false,
-        "beforeEach": false,
-        "describe": false,
-        "expect": false,
-        "fit": false,
-        "it": false,
-        "jest": false,
-        "test": false,
-        "xdescribe": false,
-        "xit": false,
-        "xtest": false,
-      },
-    },
     "plugins": {
-      "jest": {
+      "vitest": {
         "configs": {
           "all": {
-            "env": {
-              "jest/globals": true,
+            "plugins": {
+              "vitest": [Circular],
             },
+            "rules": {
+              "vitest/consistent-test-filename": "warn",
+              "vitest/consistent-test-it": "warn",
+              "vitest/index": "warn",
+              "vitest/max-expects": "warn",
+              "vitest/max-nested-describe": "warn",
+              "vitest/no-alias-methods": "warn",
+              "vitest/no-conditional-expect": "warn",
+              "vitest/no-conditional-in-test": "warn",
+              "vitest/no-conditional-tests": "warn",
+              "vitest/no-disabled-tests": "warn",
+              "vitest/no-done-callback": "warn",
+              "vitest/no-duplicate-hooks": "warn",
+              "vitest/no-focused-tests": "warn",
+              "vitest/no-hooks": "warn",
+              "vitest/no-interpolation-in-snapshots": "warn",
+              "vitest/no-large-snapshots": "warn",
+              "vitest/no-mocks-import": "warn",
+              "vitest/no-restricted-matchers": "warn",
+              "vitest/no-restricted-vi-methods": "warn",
+              "vitest/no-standalone-expect": "warn",
+              "vitest/no-test-prefixes": "warn",
+              "vitest/no-test-return-statement": "warn",
+              "vitest/prefer-called-with": "warn",
+              "vitest/prefer-comparison-matcher": "warn",
+              "vitest/prefer-each": "warn",
+              "vitest/prefer-equality-matcher": "warn",
+              "vitest/prefer-expect-assertions": "warn",
+              "vitest/prefer-expect-resolves": "warn",
+              "vitest/prefer-hooks-in-order": "warn",
+              "vitest/prefer-hooks-on-top": "warn",
+              "vitest/prefer-lowercase-title": "warn",
+              "vitest/prefer-mock-promise-shorthand": "warn",
+              "vitest/prefer-snapshot-hint": "warn",
+              "vitest/prefer-spy-on": "warn",
+              "vitest/prefer-strict-equal": "warn",
+              "vitest/prefer-to-be": "warn",
+              "vitest/prefer-to-be-falsy": "warn",
+              "vitest/prefer-to-be-object": "warn",
+              "vitest/prefer-to-be-truthy": "warn",
+              "vitest/prefer-to-contain": "warn",
+              "vitest/prefer-to-have-length": "warn",
+              "vitest/prefer-todo": "warn",
+              "vitest/require-hook": "warn",
+              "vitest/require-to-throw-message": "warn",
+              "vitest/require-top-level-describe": "warn",
+            },
+          },
+          "env": {
+            "languageOptions": {
+              "globals": {
+                "afterAll": "writable",
+                "afterEach": "writable",
+                "assert": "writable",
+                "beforeAll": "writable",
+                "beforeEach": "writable",
+                "describe": "writable",
+                "expect": "writable",
+                "it": "writable",
+                "suite": "writable",
+                "test": "writable",
+                "vi": "writable",
+                "vitest": "writable",
+              },
+            },
+          },
+          "legacy-all": {
             "plugins": [
-              "jest",
+              "@vitest",
             ],
             "rules": {
-              "jest/consistent-test-it": "error",
-              "jest/expect-expect": "error",
-              "jest/max-expects": "error",
-              "jest/max-nested-describe": "error",
-              "jest/no-alias-methods": "error",
-              "jest/no-commented-out-tests": "error",
-              "jest/no-conditional-expect": "error",
-              "jest/no-conditional-in-test": "error",
-              "jest/no-confusing-set-timeout": "error",
-              "jest/no-deprecated-functions": "error",
-              "jest/no-disabled-tests": "error",
-              "jest/no-done-callback": "error",
-              "jest/no-duplicate-hooks": "error",
-              "jest/no-export": "error",
-              "jest/no-focused-tests": "error",
-              "jest/no-hooks": "error",
-              "jest/no-identical-title": "error",
-              "jest/no-interpolation-in-snapshots": "error",
-              "jest/no-jasmine-globals": "error",
-              "jest/no-large-snapshots": "error",
-              "jest/no-mocks-import": "error",
-              "jest/no-restricted-jest-methods": "error",
-              "jest/no-restricted-matchers": "error",
-              "jest/no-standalone-expect": "error",
-              "jest/no-test-prefixes": "error",
-              "jest/no-test-return-statement": "error",
-              "jest/no-untyped-mock-factory": "error",
-              "jest/prefer-called-with": "error",
-              "jest/prefer-comparison-matcher": "error",
-              "jest/prefer-each": "error",
-              "jest/prefer-equality-matcher": "error",
-              "jest/prefer-expect-assertions": "error",
-              "jest/prefer-expect-resolves": "error",
-              "jest/prefer-hooks-in-order": "error",
-              "jest/prefer-hooks-on-top": "error",
-              "jest/prefer-importing-jest-globals": "error",
-              "jest/prefer-jest-mocked": "error",
-              "jest/prefer-lowercase-title": "error",
-              "jest/prefer-mock-promise-shorthand": "error",
-              "jest/prefer-snapshot-hint": "error",
-              "jest/prefer-spy-on": "error",
-              "jest/prefer-strict-equal": "error",
-              "jest/prefer-to-be": "error",
-              "jest/prefer-to-contain": "error",
-              "jest/prefer-to-have-length": "error",
-              "jest/prefer-todo": "error",
-              "jest/require-hook": "error",
-              "jest/require-to-throw-message": "error",
-              "jest/require-top-level-describe": "error",
-              "jest/unbound-method": "error",
-              "jest/valid-describe-callback": "error",
-              "jest/valid-expect": "error",
-              "jest/valid-expect-in-promise": "error",
-              "jest/valid-title": "error",
+              "@vitest/consistent-test-filename": "warn",
+              "@vitest/consistent-test-it": "warn",
+              "@vitest/index": "warn",
+              "@vitest/max-expects": "warn",
+              "@vitest/max-nested-describe": "warn",
+              "@vitest/no-alias-methods": "warn",
+              "@vitest/no-conditional-expect": "warn",
+              "@vitest/no-conditional-in-test": "warn",
+              "@vitest/no-conditional-tests": "warn",
+              "@vitest/no-disabled-tests": "warn",
+              "@vitest/no-done-callback": "warn",
+              "@vitest/no-duplicate-hooks": "warn",
+              "@vitest/no-focused-tests": "warn",
+              "@vitest/no-hooks": "warn",
+              "@vitest/no-interpolation-in-snapshots": "warn",
+              "@vitest/no-large-snapshots": "warn",
+              "@vitest/no-mocks-import": "warn",
+              "@vitest/no-restricted-matchers": "warn",
+              "@vitest/no-restricted-vi-methods": "warn",
+              "@vitest/no-standalone-expect": "warn",
+              "@vitest/no-test-prefixes": "warn",
+              "@vitest/no-test-return-statement": "warn",
+              "@vitest/prefer-called-with": "warn",
+              "@vitest/prefer-comparison-matcher": "warn",
+              "@vitest/prefer-each": "warn",
+              "@vitest/prefer-equality-matcher": "warn",
+              "@vitest/prefer-expect-assertions": "warn",
+              "@vitest/prefer-expect-resolves": "warn",
+              "@vitest/prefer-hooks-in-order": "warn",
+              "@vitest/prefer-hooks-on-top": "warn",
+              "@vitest/prefer-lowercase-title": "warn",
+              "@vitest/prefer-mock-promise-shorthand": "warn",
+              "@vitest/prefer-snapshot-hint": "warn",
+              "@vitest/prefer-spy-on": "warn",
+              "@vitest/prefer-strict-equal": "warn",
+              "@vitest/prefer-to-be": "warn",
+              "@vitest/prefer-to-be-falsy": "warn",
+              "@vitest/prefer-to-be-object": "warn",
+              "@vitest/prefer-to-be-truthy": "warn",
+              "@vitest/prefer-to-contain": "warn",
+              "@vitest/prefer-to-have-length": "warn",
+              "@vitest/prefer-todo": "warn",
+              "@vitest/require-hook": "warn",
+              "@vitest/require-to-throw-message": "warn",
+              "@vitest/require-top-level-describe": "warn",
             },
           },
-          "flat/all": {
-            "languageOptions": {
-              "globals": {
-                "afterAll": false,
-                "afterEach": false,
-                "beforeAll": false,
-                "beforeEach": false,
-                "describe": false,
-                "expect": false,
-                "fit": false,
-                "it": false,
-                "jest": false,
-                "test": false,
-                "xdescribe": false,
-                "xit": false,
-                "xtest": false,
-              },
-            },
-            "plugins": {
-              "jest": [Circular],
-            },
+          "legacy-recommended": {
+            "plugins": [
+              "@vitest",
+            ],
             "rules": {
-              "jest/consistent-test-it": "error",
-              "jest/expect-expect": "error",
-              "jest/max-expects": "error",
-              "jest/max-nested-describe": "error",
-              "jest/no-alias-methods": "error",
-              "jest/no-commented-out-tests": "error",
-              "jest/no-conditional-expect": "error",
-              "jest/no-conditional-in-test": "error",
-              "jest/no-confusing-set-timeout": "error",
-              "jest/no-deprecated-functions": "error",
-              "jest/no-disabled-tests": "error",
-              "jest/no-done-callback": "error",
-              "jest/no-duplicate-hooks": "error",
-              "jest/no-export": "error",
-              "jest/no-focused-tests": "error",
-              "jest/no-hooks": "error",
-              "jest/no-identical-title": "error",
-              "jest/no-interpolation-in-snapshots": "error",
-              "jest/no-jasmine-globals": "error",
-              "jest/no-large-snapshots": "error",
-              "jest/no-mocks-import": "error",
-              "jest/no-restricted-jest-methods": "error",
-              "jest/no-restricted-matchers": "error",
-              "jest/no-standalone-expect": "error",
-              "jest/no-test-prefixes": "error",
-              "jest/no-test-return-statement": "error",
-              "jest/no-untyped-mock-factory": "error",
-              "jest/prefer-called-with": "error",
-              "jest/prefer-comparison-matcher": "error",
-              "jest/prefer-each": "error",
-              "jest/prefer-equality-matcher": "error",
-              "jest/prefer-expect-assertions": "error",
-              "jest/prefer-expect-resolves": "error",
-              "jest/prefer-hooks-in-order": "error",
-              "jest/prefer-hooks-on-top": "error",
-              "jest/prefer-importing-jest-globals": "error",
-              "jest/prefer-jest-mocked": "error",
-              "jest/prefer-lowercase-title": "error",
-              "jest/prefer-mock-promise-shorthand": "error",
-              "jest/prefer-snapshot-hint": "error",
-              "jest/prefer-spy-on": "error",
-              "jest/prefer-strict-equal": "error",
-              "jest/prefer-to-be": "error",
-              "jest/prefer-to-contain": "error",
-              "jest/prefer-to-have-length": "error",
-              "jest/prefer-todo": "error",
-              "jest/require-hook": "error",
-              "jest/require-to-throw-message": "error",
-              "jest/require-top-level-describe": "error",
-              "jest/unbound-method": "error",
-              "jest/valid-describe-callback": "error",
-              "jest/valid-expect": "error",
-              "jest/valid-expect-in-promise": "error",
-              "jest/valid-title": "error",
-            },
-          },
-          "flat/recommended": {
-            "languageOptions": {
-              "globals": {
-                "afterAll": false,
-                "afterEach": false,
-                "beforeAll": false,
-                "beforeEach": false,
-                "describe": false,
-                "expect": false,
-                "fit": false,
-                "it": false,
-                "jest": false,
-                "test": false,
-                "xdescribe": false,
-                "xit": false,
-                "xtest": false,
-              },
-            },
-            "plugins": [Circular],
-            "rules": {
-              "jest/expect-expect": "warn",
-              "jest/no-alias-methods": "error",
-              "jest/no-commented-out-tests": "warn",
-              "jest/no-conditional-expect": "error",
-              "jest/no-deprecated-functions": "error",
-              "jest/no-disabled-tests": "warn",
-              "jest/no-done-callback": "error",
-              "jest/no-export": "error",
-              "jest/no-focused-tests": "error",
-              "jest/no-identical-title": "error",
-              "jest/no-interpolation-in-snapshots": "error",
-              "jest/no-jasmine-globals": "error",
-              "jest/no-mocks-import": "error",
-              "jest/no-standalone-expect": "error",
-              "jest/no-test-prefixes": "error",
-              "jest/valid-describe-callback": "error",
-              "jest/valid-expect": "error",
-              "jest/valid-expect-in-promise": "error",
-              "jest/valid-title": "error",
-            },
-          },
-          "flat/style": {
-            "languageOptions": {
-              "globals": {
-                "afterAll": false,
-                "afterEach": false,
-                "beforeAll": false,
-                "beforeEach": false,
-                "describe": false,
-                "expect": false,
-                "fit": false,
-                "it": false,
-                "jest": false,
-                "test": false,
-                "xdescribe": false,
-                "xit": false,
-                "xtest": false,
-              },
-            },
-            "plugins": {
-              "jest": [Circular],
-            },
-            "rules": {
-              "jest/no-alias-methods": "warn",
-              "jest/prefer-to-be": "error",
-              "jest/prefer-to-contain": "error",
-              "jest/prefer-to-have-length": "error",
+              "@vitest/expect-expect": "error",
+              "@vitest/no-commented-out-tests": "error",
+              "@vitest/no-identical-title": "error",
+              "@vitest/no-import-node-test": "error",
+              "@vitest/require-local-test-context-for-concurrent-snapshots": "error",
+              "@vitest/valid-describe-callback": "error",
+              "@vitest/valid-expect": "error",
+              "@vitest/valid-title": "error",
             },
           },
           "recommended": {
-            "env": {
-              "jest/globals": true,
+            "plugins": {
+              "vitest": [Circular],
             },
-            "plugins": [
-              "jest",
-            ],
             "rules": {
-              "jest/expect-expect": "warn",
-              "jest/no-alias-methods": "error",
-              "jest/no-commented-out-tests": "warn",
-              "jest/no-conditional-expect": "error",
-              "jest/no-deprecated-functions": "error",
-              "jest/no-disabled-tests": "warn",
-              "jest/no-done-callback": "error",
-              "jest/no-export": "error",
-              "jest/no-focused-tests": "error",
-              "jest/no-identical-title": "error",
-              "jest/no-interpolation-in-snapshots": "error",
-              "jest/no-jasmine-globals": "error",
-              "jest/no-mocks-import": "error",
-              "jest/no-standalone-expect": "error",
-              "jest/no-test-prefixes": "error",
-              "jest/valid-describe-callback": "error",
-              "jest/valid-expect": "error",
-              "jest/valid-expect-in-promise": "error",
-              "jest/valid-title": "error",
-            },
-          },
-          "style": {
-            "env": {
-              "jest/globals": true,
-            },
-            "plugins": [
-              "jest",
-            ],
-            "rules": {
-              "jest/no-alias-methods": "warn",
-              "jest/prefer-to-be": "error",
-              "jest/prefer-to-contain": "error",
-              "jest/prefer-to-have-length": "error",
+              "vitest/expect-expect": "error",
+              "vitest/no-commented-out-tests": "error",
+              "vitest/no-identical-title": "error",
+              "vitest/no-import-node-test": "error",
+              "vitest/require-local-test-context-for-concurrent-snapshots": "error",
+              "vitest/valid-describe-callback": "error",
+              "vitest/valid-expect": "error",
+              "vitest/valid-title": "error",
             },
           },
         },
         "environments": {
-          "globals": {
+          "env": {
             "globals": {
-              "afterAll": false,
-              "afterEach": false,
-              "beforeAll": false,
-              "beforeEach": false,
-              "describe": false,
-              "expect": false,
-              "fit": false,
-              "it": false,
-              "jest": false,
-              "test": false,
-              "xdescribe": false,
-              "xit": false,
-              "xtest": false,
+              "afterAll": true,
+              "afterEach": true,
+              "assert": true,
+              "beforeAll": true,
+              "beforeEach": true,
+              "describe": true,
+              "expect": true,
+              "it": true,
+              "suite": true,
+              "test": true,
+              "vi": true,
+              "vitest": true,
             },
           },
         },
         "meta": {
-          "name": "eslint-plugin-jest",
-          "version": "28.6.0",
+          "name": "vitest",
+          "version": "1.0.0",
         },
         "rules": {
+          "consistent-test-filename": {
+            "create": [Function],
+            "defaultOptions": [
+              {
+                "allTestPattern": ".*\\.(test|spec)\\.[tj]sx?$",
+                "pattern": ".*\\.(test|spec)\\.[tj]sx?$",
+              },
+            ],
+            "meta": {
+              "docs": {
+                "description": "require .spec test file pattern",
+                "recommended": false,
+                "requiresTypeChecking": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/consistent-test-filename.md",
+              },
+              "messages": {
+                "consistentTestFilename": "use test file name pattern {{pattern}}",
+              },
+              "schema": [
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "allTestPattern": {
+                      "default": ".*\\.(test|spec)\\.[tj]sx?$",
+                      "format": "regex",
+                    },
+                    "pattern": {
+                      "default": ".*\\.test\\.[tj]sx?$",
+                      "format": "regex",
+                    },
+                  },
+                  "type": "object",
+                },
+              ],
+              "type": "problem",
+            },
+          },
           "consistent-test-it": {
             "create": [Function],
             "defaultOptions": [
@@ -17147,13 +17147,14 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             ],
             "meta": {
               "docs": {
-                "description": "Enforce \`test\` and \`it\` usage conventions",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/consistent-test-it.md",
+                "description": "enforce using test or it but not both",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/consistent-test-it.md",
               },
               "fixable": "code",
               "messages": {
-                "consistentMethod": "Prefer using '{{ testKeyword }}' instead of '{{ oppositeTestKeyword }}'",
-                "consistentMethodWithinDescribe": "Prefer using '{{ testKeywordWithinDescribe }}' instead of '{{ oppositeTestKeyword }}' within describe",
+                "consistentMethod": "Prefer using {{ testFnKeyWork }} instead of {{ oppositeTestKeyword }}",
+                "consistentMethodWithinDescribe": "Prefer using {{ testKeywordWithinDescribe }} instead of {{ oppositeTestKeyword }} within describe",
               },
               "schema": [
                 {
@@ -17161,15 +17162,15 @@ If your function does not access \`this\`, you can annotate it with \`this: void
                   "properties": {
                     "fn": {
                       "enum": [
-                        "it",
                         "test",
+                        "it",
                       ],
                       "type": "string",
                     },
                     "withinDescribe": {
                       "enum": [
-                        "it",
                         "test",
+                        "it",
                       ],
                       "type": "string",
                     },
@@ -17192,8 +17193,9 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             ],
             "meta": {
               "docs": {
-                "description": "Enforce assertion to be made in a test body",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/expect-expect.md",
+                "description": "enforce having expectation in test body",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/expect-expect.md",
               },
               "messages": {
                 "noAssertions": "Test has no assertions",
@@ -17209,15 +17211,34 @@ If your function does not access \`this\`, you can annotate it with \`this: void
                       "type": "array",
                     },
                     "assertFunctionNames": {
-                      "items": {
-                        "type": "string",
-                      },
+                      "items": [
+                        {
+                          "type": "string",
+                        },
+                      ],
                       "type": "array",
                     },
                   },
                   "type": "object",
                 },
               ],
+              "type": "suggestion",
+            },
+          },
+          "index": {
+            "create": [Function],
+            "defaultOptions": [],
+            "meta": {
+              "deprecated": false,
+              "docs": {
+                "description": "Enforce padding around afterAll blocks",
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/index.md",
+              },
+              "fixable": "whitespace",
+              "messages": {
+                "missingPadding": "expect blank line before this statement",
+              },
+              "schema": [],
               "type": "suggestion",
             },
           },
@@ -17230,19 +17251,20 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             ],
             "meta": {
               "docs": {
-                "description": "Enforces a maximum number assertion calls in a test body",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/max-expects.md",
+                "description": "enforce a maximum number of expect per test",
+                "recommended": false,
+                "requiresTypeChecking": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/max-expects.md",
               },
               "messages": {
-                "exceededMaxAssertion": "Too many assertion calls ({{ count }}) - maximum allowed is {{ max }}",
+                "maxExpect": "Too many assertion calls ({{count}}). Maximum is {{max}}.",
               },
               "schema": [
                 {
                   "additionalProperties": false,
                   "properties": {
                     "max": {
-                      "minimum": 1,
-                      "type": "integer",
+                      "type": "number",
                     },
                   },
                   "type": "object",
@@ -17260,25 +17282,25 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             ],
             "meta": {
               "docs": {
-                "description": "Enforces a maximum depth to nested describe calls",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/max-nested-describe.md",
+                "description": "require describe block to be less than set max value or default value",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/max-nested-describe.md",
               },
               "messages": {
-                "exceededMaxDepth": "Too many nested describe calls ({{ depth }}) - maximum allowed is {{ max }}",
+                "maxNestedDescribe": "Nested describe block should be less than set max value.",
               },
               "schema": [
                 {
                   "additionalProperties": false,
                   "properties": {
                     "max": {
-                      "minimum": 0,
-                      "type": "integer",
+                      "type": "number",
                     },
                   },
                   "type": "object",
                 },
               ],
-              "type": "suggestion",
+              "type": "problem",
             },
           },
           "no-alias-methods": {
@@ -17286,12 +17308,14 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Disallow alias methods",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-alias-methods.md",
+                "description": "disallow alias methods",
+                "recommended": false,
+                "requiresTypeChecking": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-alias-methods.md",
               },
               "fixable": "code",
               "messages": {
-                "replaceAlias": "Replace {{ alias }}() with its canonical name of {{ canonical }}()",
+                "noAliasMethods": "Replace {{ alias }}() with its canonical name {{ canonical }}()",
               },
               "schema": [],
               "type": "suggestion",
@@ -17302,11 +17326,13 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Disallow commented out tests",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-commented-out-tests.md",
+                "description": "disallow commented out tests",
+                "recommended": false,
+                "requiresTypeChecking": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-commented-out-tests.md",
               },
               "messages": {
-                "commentedTests": "Some tests seem to be commented",
+                "noCommentedOutTests": "Remove commented out tests. You may want to use \`skip\` or \`only\` instead.",
               },
               "schema": [],
               "type": "suggestion",
@@ -17317,11 +17343,13 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Disallow calling \`expect\` conditionally",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-conditional-expect.md",
+                "description": "disallow conditional expects",
+                "recommended": false,
+                "requiresTypeChecking": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-conditional-expect.md",
               },
               "messages": {
-                "conditionalExpect": "Avoid calling \`expect\` conditionally\`",
+                "noConditionalExpect": "Avoid calling \`expect\` inside conditional statements",
               },
               "schema": [],
               "type": "problem",
@@ -17332,47 +17360,32 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Disallow conditional logic in tests",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-conditional-in-test.md",
+                "description": "disallow conditional tests",
+                "recommended": false,
+                "requiresTypeChecking": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-conditional-in-test.md",
               },
               "messages": {
-                "conditionalInTest": "Avoid having conditionals in tests",
+                "noConditionalInTest": "Remove conditional tests",
               },
               "schema": [],
               "type": "problem",
             },
           },
-          "no-confusing-set-timeout": {
+          "no-conditional-tests": {
             "create": [Function],
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Disallow confusing usages of jest.setTimeout",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-confusing-set-timeout.md",
+                "description": "disallow conditional tests",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-conditional-tests.md",
               },
               "messages": {
-                "globalSetTimeout": "\`jest.setTimeout\` should be call in \`global\` scope",
-                "multipleSetTimeouts": "Do not call \`jest.setTimeout\` multiple times, as only the last call will have an effect",
-                "orderSetTimeout": "\`jest.setTimeout\` should be placed before any other jest methods",
+                "noConditionalTests": "Avoid using if conditions in a test.",
               },
               "schema": [],
               "type": "problem",
-            },
-          },
-          "no-deprecated-functions": {
-            "create": [Function],
-            "defaultOptions": [],
-            "meta": {
-              "docs": {
-                "description": "Disallow use of deprecated functions",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-deprecated-functions.md",
-              },
-              "fixable": "code",
-              "messages": {
-                "deprecatedFunction": "\`{{ deprecation }}\` has been deprecated in favor of \`{{ replacement }}\`",
-              },
-              "schema": [],
-              "type": "suggestion",
             },
           },
           "no-disabled-tests": {
@@ -17380,12 +17393,13 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Disallow disabled tests",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-disabled-tests.md",
+                "description": "disallow disabled tests",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-disabled-tests.md",
               },
               "messages": {
-                "disabledSuite": "Disabled test suite",
-                "disabledTest": "Disabled test",
+                "disabledSuite": "Disabled test suite. If you want to skip a test suite temporarily, use .todo() instead.",
+                "disabledTest": "Disabled test. If you want to skip a test temporarily, use .todo() instead.",
                 "missingFunction": "Test is missing function argument",
                 "pending": "Call to pending()",
                 "pendingSuite": "Call to pending() within test suite",
@@ -17399,15 +17413,17 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "create": [Function],
             "defaultOptions": [],
             "meta": {
+              "deprecated": true,
               "docs": {
-                "description": "Disallow using a callback in asynchronous tests and hooks",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-done-callback.md",
+                "description": "disallow using a callback in asynchronous tests and hooks",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-done-callback.md",
               },
               "hasSuggestions": true,
               "messages": {
-                "noDoneCallback": "Return a Promise instead of relying on callback parameter",
+                "noDoneCallback": "Return a promise instead of relying on callback parameter",
                 "suggestWrappingInPromise": "Wrap in \`new Promise({{ callback }} => ...\`",
-                "useAwaitInsteadOfCallback": "Use await instead of callback in async functions",
+                "useAwaitInsteadOfCallback": "Use \`await\` instead of callback in async function",
               },
               "schema": [],
               "type": "suggestion",
@@ -17418,26 +17434,13 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Disallow duplicate setup and teardown hooks",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-duplicate-hooks.md",
+                "description": "disallow duplicate hooks and teardown hooks",
+                "recommended": false,
+                "requiresTypeChecking": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-duplicate-hooks.md",
               },
               "messages": {
-                "noDuplicateHook": "Duplicate {{hook}} in describe block",
-              },
-              "schema": [],
-              "type": "suggestion",
-            },
-          },
-          "no-export": {
-            "create": [Function],
-            "defaultOptions": [],
-            "meta": {
-              "docs": {
-                "description": "Disallow using \`exports\` in files containing tests",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-export.md",
-              },
-              "messages": {
-                "unexpectedExport": "Do not export from a test file",
+                "noDuplicateHooks": "Duplicate {{hook}} in describe block.",
               },
               "schema": [],
               "type": "suggestion",
@@ -17445,19 +17448,34 @@ If your function does not access \`this\`, you can annotate it with \`this: void
           },
           "no-focused-tests": {
             "create": [Function],
-            "defaultOptions": [],
+            "defaultOptions": [
+              {
+                "fixable": true,
+              },
+            ],
             "meta": {
               "docs": {
-                "description": "Disallow focused tests",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-focused-tests.md",
+                "description": "disallow focused tests",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-focused-tests.md",
               },
-              "hasSuggestions": true,
+              "fixable": "code",
               "messages": {
-                "focusedTest": "Unexpected focused test",
-                "suggestRemoveFocus": "Remove focus from test",
+                "noFocusedTests": "Focused tests are not allowed.",
               },
-              "schema": [],
-              "type": "suggestion",
+              "schema": [
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "fixable": {
+                      "default": true,
+                      "type": "boolean",
+                    },
+                  },
+                  "type": "object",
+                },
+              ],
+              "type": "problem",
             },
           },
           "no-hooks": {
@@ -17469,8 +17487,9 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             ],
             "meta": {
               "docs": {
-                "description": "Disallow setup and teardown hooks",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-hooks.md",
+                "description": "disallow setup and teardown hooks",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-hooks.md",
               },
               "messages": {
                 "unexpectedHook": "Unexpected '{{ hookName }}' hook",
@@ -17500,12 +17519,31 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Disallow identical titles",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-identical-title.md",
+                "description": "disallow identical titles",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-identical-title.md",
               },
+              "fixable": "code",
               "messages": {
-                "multipleDescribeTitle": "Describe block title is used multiple times in the same describe block",
-                "multipleTestTitle": "Test title is used multiple times in the same describe block",
+                "multipleDescribeTitle": "Describe is used multiple times in the same describe(suite) block",
+                "multipleTestTitle": "Test is used multiple times in the same describe(suite) block",
+              },
+              "schema": [],
+              "type": "problem",
+            },
+          },
+          "no-import-node-test": {
+            "create": [Function],
+            "defaultOptions": [],
+            "meta": {
+              "docs": {
+                "description": "disallow importing \`node:test\`",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-import-node-test.md",
+              },
+              "fixable": "code",
+              "messages": {
+                "noImportNodeTest": "Import from \`vitest\` instead of \`node:test\`",
               },
               "schema": [],
               "type": "suggestion",
@@ -17516,34 +17554,16 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Disallow string interpolation inside snapshots",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-interpolation-in-snapshots.md",
-              },
-              "messages": {
-                "noInterpolation": "Do not use string interpolation inside of snapshots",
-              },
-              "schema": [],
-              "type": "problem",
-            },
-          },
-          "no-jasmine-globals": {
-            "create": [Function],
-            "defaultOptions": [],
-            "meta": {
-              "docs": {
-                "description": "Disallow Jasmine globals",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-jasmine-globals.md",
+                "description": "disallow string interpolation in snapshots",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-interpolation-in-snapshots.md",
               },
               "fixable": "code",
               "messages": {
-                "illegalFail": "Illegal usage of \`fail\`, prefer throwing an error, or the \`done.fail\` callback",
-                "illegalGlobal": "Illegal usage of global \`{{ global }}\`, prefer \`{{ replacement }}\`",
-                "illegalJasmine": "Illegal usage of jasmine global",
-                "illegalMethod": "Illegal usage of \`{{ method }}\`, prefer \`{{ replacement }}\`",
-                "illegalPending": "Illegal usage of \`pending\`, prefer explicitly skipping a test using \`test.skip\`",
+                "noInterpolationInSnapshots": "Do not use string interpolation in snapshots",
               },
               "schema": [],
-              "type": "suggestion",
+              "type": "problem",
             },
           },
           "no-large-snapshots": {
@@ -17553,12 +17573,13 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             ],
             "meta": {
               "docs": {
-                "description": "Disallow large snapshots",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-large-snapshots.md",
+                "description": "disallow large snapshots",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-large-snapshots.md",
               },
               "messages": {
-                "noSnapshot": "\`{{ lineCount }}\`s should begin with lowercase",
-                "tooLongSnapshots": "Expected Jest snapshot to be smaller than {{ lineLimit }} lines but was {{ lineCount }} lines long",
+                "noSnapShot": "\`{{ lineCount }}\`s should begin with lowercase",
+                "tooLongSnapShot": "Expected vitest snapshot to be smaller than {{ lineLimit }} lines but was {{ lineCount }} lines long",
               },
               "schema": [
                 {
@@ -17588,29 +17609,31 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Disallow manually importing from \`__mocks__\`",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-mocks-import.md",
+                "description": "disallow importing from __mocks__ directory",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-mocks-import.md",
               },
               "messages": {
-                "noManualImport": "Mocks should not be manually imported from a __mocks__ directory. Instead use \`jest.mock\` and import from the original module path",
+                "noMocksImport": "Mocks should not be manually imported from a __mocks__ directory. Instead use \`jest.mock\` and import from the original module path.",
               },
               "schema": [],
               "type": "problem",
             },
           },
-          "no-restricted-jest-methods": {
+          "no-restricted-matchers": {
             "create": [Function],
             "defaultOptions": [
               {},
             ],
             "meta": {
               "docs": {
-                "description": "Disallow specific \`jest.\` methods",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-restricted-jest-methods.md",
+                "description": "disallow the use of certain matchers",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-restricted-matchers.md",
               },
               "messages": {
-                "restrictedJestMethod": "Use of \`{{ restriction }}\` is disallowed",
-                "restrictedJestMethodWithMessage": "{{ message }}",
+                "restrictedChain": "use of {{ restriction }} is disallowed",
+                "restrictedChainWithMessage": "{{ message }}",
               },
               "schema": [
                 {
@@ -17626,19 +17649,20 @@ If your function does not access \`this\`, you can annotate it with \`this: void
               "type": "suggestion",
             },
           },
-          "no-restricted-matchers": {
+          "no-restricted-vi-methods": {
             "create": [Function],
             "defaultOptions": [
               {},
             ],
             "meta": {
               "docs": {
-                "description": "Disallow specific matchers & modifiers",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-restricted-matchers.md",
+                "description": "disallow specific \`vi.\` methods",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-restricted-vi-methods.md",
               },
               "messages": {
-                "restrictedChain": "Use of \`{{ restriction }}\` is disallowed",
-                "restrictedChainWithMessage": "{{ message }}",
+                "restrictedViMethod": "Use of \`{{ restriction }}\` is disallowed",
+                "restrictedViMethodWithMessage": "{{ message }}",
               },
               "schema": [
                 {
@@ -17663,24 +17687,24 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             ],
             "meta": {
               "docs": {
-                "description": "Disallow using \`expect\` outside of \`it\` or \`test\` blocks",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-standalone-expect.md",
+                "description": "disallow using \`expect\` outside of \`it\` or \`test\` blocks",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-standalone-expect.md",
               },
               "messages": {
-                "unexpectedExpect": "Expect must be inside of a test block",
+                "noStandaloneExpect": "Expect must be called inside a test block",
               },
               "schema": [
                 {
-                  "additionalProperties": false,
+                  "additionalproperties": false,
                   "properties": {
-                    "additionalTestBlockFunctions": {
+                    "additionaltestblockfunctions": {
                       "items": {
                         "type": "string",
                       },
                       "type": "array",
                     },
                   },
-                  "type": "object",
                 },
               ],
               "type": "suggestion",
@@ -17691,12 +17715,13 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Require using \`.only\` and \`.skip\` over \`f\` and \`x\`",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-test-prefixes.md",
+                "description": "disallow using \`test\` as a prefix",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-test-prefixes.md",
               },
               "fixable": "code",
               "messages": {
-                "usePreferredName": "Use "{{ preferredNodeName }}" instead",
+                "usePreferredName": "Use "{{preferredNodeName}}" instead",
               },
               "schema": [],
               "type": "suggestion",
@@ -17707,30 +17732,15 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Disallow explicitly returning from tests",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-test-return-statement.md",
+                "description": "disallow return statements in tests",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-test-return-statement.md",
               },
               "messages": {
-                "noReturnValue": "Jest tests should not return a value",
+                "noTestReturnStatement": "Return statements are not allowed in tests",
               },
               "schema": [],
-              "type": "suggestion",
-            },
-          },
-          "no-untyped-mock-factory": {
-            "create": [Function],
-            "defaultOptions": [],
-            "meta": {
-              "docs": {
-                "description": "Disallow using \`jest.mock()\` factories without an explicit type parameter",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/no-untyped-mock-factory.md",
-              },
-              "fixable": "code",
-              "messages": {
-                "addTypeParameterToModuleMock": "Add a type parameter to the mock factory such as \`typeof import({{ moduleName }})\`",
-              },
-              "schema": [],
-              "type": "suggestion",
+              "type": "problem",
             },
           },
           "prefer-called-with": {
@@ -17738,9 +17748,11 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Suggest using \`toBeCalledWith()\` or \`toHaveBeenCalledWith()\`",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/prefer-called-with.md",
+                "description": "enforce using \`toBeCalledWith()\` or \`toHaveBeenCalledWith()\`",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-called-with.md",
               },
+              "fixable": "code",
               "messages": {
                 "preferCalledWith": "Prefer {{ matcherName }}With(/* expected args */)",
               },
@@ -17753,8 +17765,9 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Suggest using the built-in comparison matchers",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/prefer-comparison-matcher.md",
+                "description": "enforce using the built-in comparison matchers",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-comparison-matcher.md",
               },
               "fixable": "code",
               "messages": {
@@ -17769,11 +17782,12 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Prefer using \`.each\` rather than manual loops",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/prefer-each.md",
+                "description": "enforce using \`each\` rather than manual loops",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-each.md",
               },
               "messages": {
-                "preferEach": "prefer using \`{{ fn }}.each\` rather than a manual loop",
+                "preferEach": "Prefer using \`{{ fn }}.each\` rather than a manual loop",
               },
               "schema": [],
               "type": "suggestion",
@@ -17784,8 +17798,9 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Suggest using the built-in equality matchers",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/prefer-equality-matcher.md",
+                "description": "enforce using the built-in quality matchers",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-equality-matcher.md",
               },
               "hasSuggestions": true,
               "messages": {
@@ -17807,8 +17822,9 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             ],
             "meta": {
               "docs": {
-                "description": "Suggest using \`expect.assertions()\` OR \`expect.hasAssertions()\`",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/prefer-expect-assertions.md",
+                "description": "enforce using expect assertions instead of callbacks",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-expect-assertions.md",
               },
               "hasSuggestions": true,
               "messages": {
@@ -17845,12 +17861,13 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Prefer \`await expect(...).resolves\` over \`expect(await ...)\` syntax",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/prefer-expect-resolves.md",
+                "description": "enforce using \`expect().resolves\` over \`expect(await ...)\` syntax",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-expect-resolves.md",
               },
               "fixable": "code",
               "messages": {
-                "expectResolves": "Use \`await expect(...).resolves instead",
+                "expectResolves": "Use \`expect().resolves\` instead",
               },
               "schema": [],
               "type": "suggestion",
@@ -17861,8 +17878,9 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Prefer having hooks in a consistent order",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/prefer-hooks-in-order.md",
+                "description": "enforce having hooks in consistent order",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-hooks-in-order.md",
               },
               "messages": {
                 "reorderHooks": "\`{{ currentHook }}\` hooks should be before any \`{{ previousHook }}\` hooks",
@@ -17876,75 +17894,12 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Suggest having hooks before any test cases",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/prefer-hooks-on-top.md",
+                "description": "enforce having hooks before any test cases",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-hooks-on-top.md",
               },
               "messages": {
                 "noHookOnTop": "Hooks should come before test cases",
-              },
-              "schema": [],
-              "type": "suggestion",
-            },
-          },
-          "prefer-importing-jest-globals": {
-            "create": [Function],
-            "defaultOptions": [
-              {
-                "types": [
-                  "hook",
-                  "describe",
-                  "test",
-                  "expect",
-                  "jest",
-                  "unknown",
-                ],
-              },
-            ],
-            "meta": {
-              "docs": {
-                "description": "Prefer importing Jest globals",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/prefer-importing-jest-globals.md",
-              },
-              "fixable": "code",
-              "messages": {
-                "preferImportingJestGlobal": "Import the following Jest functions from '@jest/globals': {{ jestFunctions }}",
-              },
-              "schema": [
-                {
-                  "additionalProperties": false,
-                  "properties": {
-                    "types": {
-                      "items": {
-                        "enum": [
-                          "hook",
-                          "describe",
-                          "test",
-                          "expect",
-                          "jest",
-                          "unknown",
-                        ],
-                        "type": "string",
-                      },
-                      "type": "array",
-                    },
-                  },
-                  "type": "object",
-                },
-              ],
-              "type": "problem",
-            },
-          },
-          "prefer-jest-mocked": {
-            "create": [Function],
-            "defaultOptions": [],
-            "meta": {
-              "docs": {
-                "description": "Prefer \`jest.mocked()\` over \`fn as jest.Mock\`",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/prefer-jest-mocked.md",
-              },
-              "fixable": "code",
-              "messages": {
-                "useJestMocked": "Prefer \`jest.mocked()\`",
               },
               "schema": [],
               "type": "suggestion",
@@ -17957,16 +17912,18 @@ If your function does not access \`this\`, you can annotate it with \`this: void
                 "allowedPrefixes": [],
                 "ignore": [],
                 "ignoreTopLevelDescribe": false,
+                "lowercaseFirstCharacterOnly": true,
               },
             ],
             "meta": {
               "docs": {
-                "description": "Enforce lowercase test names",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/prefer-lowercase-title.md",
+                "description": "enforce lowercase titles",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-lowercase-title.md",
               },
               "fixable": "code",
               "messages": {
-                "unexpectedLowercase": "\`{{ method }}\`s should begin with lowercase",
+                "lowerCaseTitle": "\`{{ method }}\`s should begin with lowercase",
               },
               "schema": [
                 {
@@ -17980,7 +17937,6 @@ If your function does not access \`this\`, you can annotate it with \`this: void
                       "type": "array",
                     },
                     "ignore": {
-                      "additionalItems": false,
                       "items": {
                         "enum": [
                           "describe",
@@ -17995,11 +17951,15 @@ If your function does not access \`this\`, you can annotate it with \`this: void
                       "default": false,
                       "type": "boolean",
                     },
+                    "lowercaseFirstCharacterOnly": {
+                      "default": true,
+                      "type": "boolean",
+                    },
                   },
                   "type": "object",
                 },
               ],
-              "type": "suggestion",
+              "type": "problem",
             },
           },
           "prefer-mock-promise-shorthand": {
@@ -18007,8 +17967,9 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Prefer mock resolved/rejected shorthands for promises",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/prefer-mock-promise-shorthand.md",
+                "description": "enforce mock resolved/rejected shorthands for promises",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-mock-promise-shorthand.md",
               },
               "fixable": "code",
               "messages": {
@@ -18025,8 +17986,9 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             ],
             "meta": {
               "docs": {
-                "description": "Prefer including a hint with external snapshots",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/prefer-snapshot-hint.md",
+                "description": "enforce including a hint with external snapshots",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-snapshot-hint.md",
               },
               "messages": {
                 "missingHint": "You should provide a hint for this snapshot",
@@ -18048,12 +18010,13 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Suggest using \`jest.spyOn()\`",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/prefer-spy-on.md",
+                "description": "enforce using \`vi.spyOn\`",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-spy-on.md",
               },
               "fixable": "code",
               "messages": {
-                "useJestSpyOn": "Use jest.spyOn() instead",
+                "useViSpayOn": "Use \`vi.spyOn\` instead",
               },
               "schema": [],
               "type": "suggestion",
@@ -18064,8 +18027,9 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Suggest using \`toStrictEqual()\`",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/prefer-strict-equal.md",
+                "description": "enforce strict equal over equal",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-strict-equal.md",
               },
               "hasSuggestions": true,
               "messages": {
@@ -18081,16 +18045,68 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Suggest using \`toBe()\` for primitive literals",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/prefer-to-be.md",
+                "description": "enforce using toBe()",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-to-be.md",
               },
               "fixable": "code",
               "messages": {
-                "useToBe": "Use \`toBe\` when expecting primitive literals",
-                "useToBeDefined": "Use \`toBeDefined\` instead",
-                "useToBeNaN": "Use \`toBeNaN\` instead",
-                "useToBeNull": "Use \`toBeNull\` instead",
-                "useToBeUndefined": "Use \`toBeUndefined\` instead",
+                "useToBe": "Use \`toBe\` instead",
+                "useToBeDefined": "Use \`toBeDefined()\` instead",
+                "useToBeNaN": "Use \`toBeNaN()\` instead",
+                "useToBeNull": "Use \`toBeNull()\` instead",
+                "useToBeUndefined": "Use \`toBeUndefined()\` instead",
+              },
+              "schema": [],
+              "type": "suggestion",
+            },
+          },
+          "prefer-to-be-falsy": {
+            "create": [Function],
+            "defaultOptions": [],
+            "meta": {
+              "docs": {
+                "description": "enforce using toBeFalsy()",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-to-be-falsy.md",
+              },
+              "fixable": "code",
+              "messages": {
+                "preferToBeFalsy": "Prefer using toBeFalsy()",
+              },
+              "schema": [],
+              "type": "suggestion",
+            },
+          },
+          "prefer-to-be-object": {
+            "create": [Function],
+            "defaultOptions": [],
+            "meta": {
+              "docs": {
+                "description": "enforce using toBeObject()",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-to-be-object.md",
+              },
+              "fixable": "code",
+              "messages": {
+                "preferToBeObject": "Prefer toBeObject() to test if a value is an object.",
+              },
+              "schema": [],
+              "type": "suggestion",
+            },
+          },
+          "prefer-to-be-truthy": {
+            "create": [Function],
+            "defaultOptions": [],
+            "meta": {
+              "docs": {
+                "description": "enforce using \`toBeTruthy\`",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-to-be-truthy.md",
+              },
+              "fixable": "code",
+              "messages": {
+                "preferToBeTruthy": "Prefer using \`toBeTruthy\` to test value is \`true\`",
               },
               "schema": [],
               "type": "suggestion",
@@ -18101,8 +18117,9 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Suggest using \`toContain()\`",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/prefer-to-contain.md",
+                "description": "enforce using toContain()",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-to-contain.md",
               },
               "fixable": "code",
               "messages": {
@@ -18117,12 +18134,13 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Suggest using \`toHaveLength()\`",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/prefer-to-have-length.md",
+                "description": "enforce using toHaveLength()",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-to-have-length.md",
               },
               "fixable": "code",
               "messages": {
-                "useToHaveLength": "Use toHaveLength() instead",
+                "preferToHaveLength": "Prefer toHaveLength()",
               },
               "schema": [],
               "type": "suggestion",
@@ -18133,8 +18151,9 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Suggest using \`test.todo\`",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/prefer-todo.md",
+                "description": "enforce using \`test.todo\`",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-todo.md",
               },
               "fixable": "code",
               "messages": {
@@ -18154,8 +18173,9 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             ],
             "meta": {
               "docs": {
-                "description": "Require setup and teardown code to be within a hook",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/require-hook.md",
+                "description": "require setup and teardown to be within a hook",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/require-hook.md",
               },
               "messages": {
                 "useHook": "This should be done within a hook",
@@ -18177,13 +18197,30 @@ If your function does not access \`this\`, you can annotate it with \`this: void
               "type": "suggestion",
             },
           },
+          "require-local-test-context-for-concurrent-snapshots": {
+            "create": [Function],
+            "defaultOptions": [],
+            "meta": {
+              "docs": {
+                "description": "require local Test Context for concurrent snapshot tests",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/require-local-test-context-for-concurrent-snapshots.md",
+              },
+              "messages": {
+                "requireLocalTestContext": "Use local Test Context instead",
+              },
+              "schema": [],
+              "type": "problem",
+            },
+          },
           "require-to-throw-message": {
             "create": [Function],
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Require a message for \`toThrow()\`",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/require-to-throw-message.md",
+                "description": "require toThrow() to be called with an error message",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/require-to-throw-message.md",
               },
               "messages": {
                 "addErrorMessage": "Add an error message to {{ matcherName }}()",
@@ -18199,8 +18236,9 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             ],
             "meta": {
               "docs": {
-                "description": "Require test cases and hooks to be inside a \`describe\` block",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/require-top-level-describe.md",
+                "description": "enforce that all tests are in a top-level describe",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/require-top-level-describe.md",
               },
               "messages": {
                 "tooManyDescribes": "There should not be more than {{ max }} describe{{ s }} at the top level",
@@ -18222,53 +18260,20 @@ If your function does not access \`this\`, you can annotate it with \`this: void
               "type": "suggestion",
             },
           },
-          "unbound-method": {
-            "create": [Function],
-            "defaultOptions": [
-              {
-                "ignoreStatic": false,
-              },
-            ],
-            "meta": {
-              "docs": {
-                "description": "Enforce unbound methods are called with their expected scope",
-                "recommended": undefined,
-                "requiresTypeChecking": true,
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/unbound-method.md",
-              },
-              "messages": {
-                "unbound": "Avoid referencing unbound methods which may cause unintentional scoping of \`this\`.",
-                "unboundWithoutThisAnnotation": "Avoid referencing unbound methods which may cause unintentional scoping of \`this\`.
-If your function does not access \`this\`, you can annotate it with \`this: void\`, or consider using an arrow function instead.",
-              },
-              "schema": [
-                {
-                  "additionalProperties": false,
-                  "properties": {
-                    "ignoreStatic": {
-                      "description": "Whether to skip checking whether \`static\` methods are correctly bound.",
-                      "type": "boolean",
-                    },
-                  },
-                  "type": "object",
-                },
-              ],
-              "type": "problem",
-            },
-          },
           "valid-describe-callback": {
             "create": [Function],
             "defaultOptions": [],
             "meta": {
               "docs": {
-                "description": "Enforce valid \`describe()\` callback",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/valid-describe-callback.md",
+                "description": "enforce valid describe callback",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/valid-describe-callback.md",
               },
               "messages": {
-                "nameAndCallback": "Describe requires name and callback arguments",
-                "noAsyncDescribeCallback": "No async describe callback",
-                "secondArgumentMustBeFunction": "Second argument must be function",
-                "unexpectedDescribeArgument": "Unexpected argument(s) in describe callback",
+                "nameAndCallback": "Describe requires a name and callback arguments",
+                "noAsyncDescribeCallback": "Describe callback cannot be async",
+                "secondArgumentMustBeFunction": "Second argument must be a function",
+                "unexpectedDescribeArgument": "Unexpected argument in describe callback",
                 "unexpectedReturnInDescribe": "Unexpected return statement in describe callback",
               },
               "schema": [],
@@ -18290,18 +18295,18 @@ If your function does not access \`this\`, you can annotate it with \`this: void
             ],
             "meta": {
               "docs": {
-                "description": "Enforce valid \`expect()\` usage",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/valid-expect.md",
+                "description": "enforce valid \`expect()\` usage",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/valid-expect.md",
               },
-              "fixable": "code",
               "messages": {
-                "asyncMustBeAwaited": "Async assertions must be awaited{{ orReturned }}",
-                "matcherNotCalled": "Matchers must be called to assert",
-                "matcherNotFound": "Expect must have a corresponding matcher call",
-                "modifierUnknown": "Expect has an unknown modifier",
-                "notEnoughArgs": "Expect requires at least {{ amount }} argument{{ s }}",
-                "promisesWithAsyncAssertionsMustBeAwaited": "Promises which return async assertions must be awaited{{ orReturned }}",
-                "tooManyArgs": "Expect takes at most {{ amount }} argument{{ s }}",
+                "asyncMustBeAwaited": "Async assertions must be awaited{{orReturned}}",
+                "matcherNotCalled": "Matchers must be called to assert.",
+                "matcherNotFound": "Expect must have a corresponding matcher call.",
+                "modifierUnknown": "Expect has unknown modifier",
+                "notEnoughArgs": "Expect requires atleast {{ amount }} argument{{s}}",
+                "promisesWithAsyncAssertionsMustBeAwaited": "Promises which return async assertions must be awaited{{orReturned}}",
+                "tooManyArgs": "Expect takes most {{ amount}} argument{{s}}",
               },
               "schema": [
                 {
@@ -18332,47 +18337,32 @@ If your function does not access \`this\`, you can annotate it with \`this: void
               "type": "suggestion",
             },
           },
-          "valid-expect-in-promise": {
-            "create": [Function],
-            "defaultOptions": [],
-            "meta": {
-              "docs": {
-                "description": "Require promises that have expectations in their chain to be valid",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/valid-expect-in-promise.md",
-              },
-              "messages": {
-                "expectInFloatingPromise": "This promise should either be returned or awaited to ensure the expects in its chain are called",
-              },
-              "schema": [],
-              "type": "suggestion",
-            },
-          },
           "valid-title": {
             "create": [Function],
             "defaultOptions": [
               {
+                "allowArguments": false,
                 "disallowedWords": [],
-                "ignoreSpaces": false,
                 "ignoreTypeOfDescribeName": false,
-                "ignoreTypeOfTestName": false,
               },
             ],
             "meta": {
               "docs": {
-                "description": "Enforce valid titles",
-                "url": "https://github.com/jest-community/eslint-plugin-jest/blob/v28.6.0/docs/rules/valid-title.md",
+                "description": "enforce valid titles",
+                "recommended": false,
+                "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/valid-title.md",
               },
               "fixable": "code",
               "messages": {
                 "accidentalSpace": "should not have leading or trailing spaces",
-                "disallowedWord": ""{{ word }}" is not allowed in test titles",
+                "disallowedWord": ""{{word}}" is not allowed in test title",
                 "duplicatePrefix": "should not have duplicate prefix",
-                "emptyTitle": "{{ jestFunctionName }} should not have an empty title",
-                "mustMatch": "{{ jestFunctionName }} should match {{ pattern }}",
-                "mustMatchCustom": "{{ message }}",
-                "mustNotMatch": "{{ jestFunctionName }} should not match {{ pattern }}",
-                "mustNotMatchCustom": "{{ message }}",
-                "titleMustBeString": "Title must be a string",
+                "emptyTitle": "{{functionName}} should not have an empty title",
+                "mustMatch": "{{functionName}} should match {{pattern}}",
+                "mustMatchCustom": "{{message}}",
+                "mustNotMatch": "{{functionName}} should not match {{pattern}}",
+                "mustNotMatchCustom": "{{message}}",
+                "titleMustBeString": "Test title must be a string, a function or class name",
               },
               "schema": [
                 {
@@ -18415,6 +18405,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
                               "test",
                               "it",
                             ],
+                            "type": "string",
                           },
                           "type": "object",
                         },
@@ -18422,21 +18413,17 @@ If your function does not access \`this\`, you can annotate it with \`this: void
                     },
                   },
                   "properties": {
+                    "allowArguments": {
+                      "default": false,
+                      "type": "boolean",
+                    },
                     "disallowedWords": {
                       "items": {
                         "type": "string",
                       },
                       "type": "array",
                     },
-                    "ignoreSpaces": {
-                      "default": false,
-                      "type": "boolean",
-                    },
                     "ignoreTypeOfDescribeName": {
-                      "default": false,
-                      "type": "boolean",
-                    },
-                    "ignoreTypeOfTestName": {
                       "default": false,
                       "type": "boolean",
                     },
@@ -18451,25 +18438,15 @@ If your function does not access \`this\`, you can annotate it with \`this: void
       },
     },
     "rules": {
-      "jest/expect-expect": "warn",
-      "jest/no-alias-methods": "error",
-      "jest/no-commented-out-tests": "warn",
-      "jest/no-conditional-expect": "error",
-      "jest/no-deprecated-functions": "error",
-      "jest/no-disabled-tests": "warn",
-      "jest/no-done-callback": "error",
-      "jest/no-export": "error",
-      "jest/no-focused-tests": "error",
-      "jest/no-identical-title": "error",
-      "jest/no-interpolation-in-snapshots": "error",
-      "jest/no-jasmine-globals": "error",
-      "jest/no-mocks-import": "error",
-      "jest/no-standalone-expect": "error",
-      "jest/no-test-prefixes": "error",
-      "jest/valid-describe-callback": "error",
-      "jest/valid-expect": "error",
-      "jest/valid-expect-in-promise": "error",
-      "jest/valid-title": "error",
+      "@typescript-eslint/no-unsafe-assignment": "off",
+      "vitest/expect-expect": "error",
+      "vitest/no-commented-out-tests": "error",
+      "vitest/no-identical-title": "error",
+      "vitest/no-import-node-test": "error",
+      "vitest/require-local-test-context-for-concurrent-snapshots": "error",
+      "vitest/valid-describe-callback": "error",
+      "vitest/valid-expect": "error",
+      "vitest/valid-title": "error",
     },
   },
 ]

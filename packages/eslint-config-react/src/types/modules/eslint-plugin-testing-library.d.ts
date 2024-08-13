@@ -3,7 +3,7 @@ declare module "eslint-plugin-testing-library" {
   const plugin: Omit<ESLint.Plugin, "configs"> & {
     // eslint-plugin-react does not use FlatConfig yet
     configs: ESLint.Plugin["configs"] & {
-      recommended: {
+      "flat/react": {
         rules: Linter.RulesRecord;
       };
     };
