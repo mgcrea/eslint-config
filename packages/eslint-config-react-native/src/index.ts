@@ -1,4 +1,4 @@
-import { fixupPluginRules, type FlatConfig } from "@eslint/compat";
+import { fixupPluginRules } from "@eslint/compat";
 import baseConfig from "@mgcrea/eslint-config-react";
 import reactNative from "eslint-plugin-react-native";
 import { globals } from "./globals";

@@ -48,9 +48,7 @@ const config: NoPromise<Config> = tseslint.config(
     files: ["*.{mock,spec,test}.{js,ts,tsx}", "**/__{mocks,tests}__/**/*.{js,ts,tsx}"],
     plugins: {
       vitest,
-      "testing-library": fixupPluginRules({
-        rules: testingLibrary.rules,
-      }),
+      "testing-library": fixupPluginRules(testingLibrary),
     },
     rules: {
       ...testingLibrary.configs["flat/react"].rules,
