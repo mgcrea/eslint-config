@@ -29,7 +29,7 @@ const config: NoPromise<Config> = tseslint.config(
     },
   },
   {
-    files: ["*.{js,jsx,ts,tsx}"],
+    files: ["**/*.{js,jsx,ts,tsx}"],
     plugins: {
       react,
       "react-hooks": reactHooks,
@@ -45,7 +45,7 @@ const config: NoPromise<Config> = tseslint.config(
     },
   },
   {
-    files: ["*.{mock,spec,test}.{js,ts,tsx}", "**/__{mocks,tests}__/**/*.{js,ts,tsx}"],
+    files: ["**/*.{mock,spec,test}.{js,ts,tsx}", "**/__{mocks,tests}__/**/*.{js,ts,tsx}"],
     plugins: {
       vitest,
       "testing-library": fixupPluginRules(testingLibrary),
