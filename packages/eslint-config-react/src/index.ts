@@ -43,6 +43,11 @@ const config: NoPromise<Config> = tseslint.config(
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
     },
+    settings: {
+      react: {
+        version: "detect",
+      }
+    },
   },
   {
     files: ["**/*.{mock,spec,test}.{js,ts,tsx}", "**/__{mocks,tests}__/**/*.{js,ts,tsx}"],
