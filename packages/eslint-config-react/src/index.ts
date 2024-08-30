@@ -32,7 +32,7 @@ const config: NoPromise<Config> = tseslint.config(
     files: ["*.{js,jsx,ts,tsx}"],
     plugins: {
       react,
-      "react-hooks": fixupPluginRules(reactHooks),
+      "react-hooks": reactHooks,
       "react-refresh": fixupPluginRules(reactRefresh),
     },
     languageOptions: {
