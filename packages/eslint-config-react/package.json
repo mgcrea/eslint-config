@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "eslint --config dist/index.js",
-    "build": "tsup ./src --clean",
+    "build": "rimraf dist/; tsup ./src",
     "prettify": "prettier --write src/ test/",
     "spec": "vitest --run",
     "lint": "eslint src/ test/ --report-unused-disable-directives --max-warnings 0",
