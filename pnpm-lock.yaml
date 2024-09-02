@@ -63,8 +63,8 @@ importers:
   packages/eslint-config-astro:
     dependencies:
       '@mgcrea/eslint-config-react':
-        specifier: 0.12.1
-        version: 0.12.1(@types/eslint@9.6.1)(@typescript-eslint/utils@8.3.0(eslint@9.9.1)(typescript@5.5.4))(eslint@9.9.1)(prettier@3.3.3)(typescript@5.5.4)(vitest@2.0.5(@types/node@22.5.1))
+        specifier: 0.12.6
+        version: link:../eslint-config-react
       eslint-plugin-astro:
         specifier: ^1.2.3
         version: 1.2.3(eslint@9.9.1)(typescript@5.5.4)
@@ -252,8 +252,8 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1
       '@mgcrea/eslint-config-react':
-        specifier: 0.12.1
-        version: 0.12.1(@types/eslint@9.6.1)(@typescript-eslint/utils@8.3.0(eslint@9.9.1)(typescript@5.5.4))(eslint@9.9.1)(prettier@3.3.3)(typescript@5.5.4)(vitest@2.0.5(@types/node@22.5.1))
+        specifier: 0.12.6
+        version: link:../eslint-config-react
       '@react-native/eslint-plugin':
         specifier: ^0.75.2
         version: 0.75.2
@@ -279,6 +279,18 @@ importers:
       eslint:
         specifier: ^9.9.1
         version: 9.9.1
+      eslint-plugin-react:
+        specifier: ^7.35.0
+        version: 7.35.0(eslint@9.9.1)
+      eslint-plugin-react-hooks:
+        specifier: 5.1.0-rc-a19a8ab4-20240829
+        version: 5.1.0-rc-a19a8ab4-20240829(eslint@9.9.1)
+      eslint-plugin-react-refresh:
+        specifier: ^0.4.11
+        version: 0.4.11(eslint@9.9.1)
+      eslint-plugin-testing-library:
+        specifier: ^6.3.0
+        version: 6.3.0(eslint@9.9.1)(typescript@5.5.4)
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
@@ -814,9 +826,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
-
-  '@mgcrea/eslint-config-react@0.12.1':
-    resolution: {integrity: sha512-l33BQW5Prp2F2uPdgyBw7dbLxqNbJ7GG0tAXNkOhaDyzP2l1m21gIrKPj/H7laJVluIYK54xILO4FCD/OOBalQ==}
 
   '@microsoft/api-extractor-model@7.29.6':
     resolution: {integrity: sha512-gC0KGtrZvxzf/Rt9oMYD2dHvtN/1KPEYsrQPyMKhLHnlVuO/f4AFN3E4toqZzD2pt4LhkKoYmL2H9tX3yCOyRw==}
@@ -1847,12 +1856,6 @@ packages:
 
   eslint-plugin-react-hooks@5.1.0-rc-a19a8ab4-20240829:
     resolution: {integrity: sha512-lWHTnMQqgAvQ4S5VVyXSxdNnfqbSiH4VAb7hbN1scbQaB9DmXkE2r1EOi2RigeA3x994TOcrFb73l1UZD4PvXQ==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
-
-  eslint-plugin-react-hooks@5.1.0-rc-df5f2736-20240712:
-    resolution: {integrity: sha512-7rU6g+0yCvGAoJ3iIpK89XRir4FokHYJ8mUnOMuEt04UdTONOFVoMeXDC6Vjy6TnS3BMxMwOUDeDooEhK2ud1A==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
@@ -3932,27 +3935,6 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@mgcrea/eslint-config-react@0.12.1(@types/eslint@9.6.1)(@typescript-eslint/utils@8.3.0(eslint@9.9.1)(typescript@5.5.4))(eslint@9.9.1)(prettier@3.3.3)(typescript@5.5.4)(vitest@2.0.5(@types/node@22.5.1))':
-    dependencies:
-      '@eslint/compat': 1.1.1
-      '@vitest/eslint-plugin': 1.1.0(@typescript-eslint/utils@8.3.0(eslint@9.9.1)(typescript@5.5.4))(eslint@9.9.1)(typescript@5.5.4)(vitest@2.0.5(@types/node@22.5.1))
-      eslint-config-prettier: 9.1.0(eslint@9.9.1)
-      eslint-plugin-prettier: 5.2.1(@types/eslint@9.6.1)(eslint-config-prettier@9.1.0(eslint@9.9.1))(eslint@9.9.1)(prettier@3.3.3)
-      eslint-plugin-react: 7.35.0(eslint@9.9.1)
-      eslint-plugin-react-hooks: 5.1.0-rc-df5f2736-20240712(eslint@9.9.1)
-      eslint-plugin-react-refresh: 0.4.11(eslint@9.9.1)
-      eslint-plugin-testing-library: 6.3.0(eslint@9.9.1)(typescript@5.5.4)
-      globals: 15.9.0
-      typescript-eslint: 8.3.0(eslint@9.9.1)(typescript@5.5.4)
-    transitivePeerDependencies:
-      - '@types/eslint'
-      - '@typescript-eslint/utils'
-      - eslint
-      - prettier
-      - supports-color
-      - typescript
-      - vitest
-
   '@microsoft/api-extractor-model@7.29.6(@types/node@22.5.1)':
     dependencies:
       '@microsoft/tsdoc': 0.15.0
@@ -5150,10 +5132,6 @@ snapshots:
       eslint-config-prettier: 9.1.0(eslint@9.9.1)
 
   eslint-plugin-react-hooks@5.1.0-rc-a19a8ab4-20240829(eslint@9.9.1):
-    dependencies:
-      eslint: 9.9.1
-
-  eslint-plugin-react-hooks@5.1.0-rc-df5f2736-20240712(eslint@9.9.1):
     dependencies:
       eslint: 9.9.1
 

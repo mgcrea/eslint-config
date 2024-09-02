@@ -1,9 +1,9 @@
-declare module "eslint-plugin-react-native" {
+declare module "eslint-plugin-react-refresh" {
   import type { ESLint, Linter } from "eslint";
   const plugin: Omit<ESLint.Plugin, "configs"> & {
-    // eslint-plugin-react-native does not use FlatConfig yet
+    // eslint-plugin-react does not use FlatConfig yet
     configs: ESLint.Plugin["configs"] & {
-      all: {
+      recommended: {
         rules: Linter.RulesRecord;
       };
     };

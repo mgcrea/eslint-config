@@ -2,13 +2,17 @@ import { fixupPluginRules } from "@eslint/compat";
 import baseConfig from "@mgcrea/eslint-config-react";
 import reactNative from "eslint-plugin-react-native";
 import { globals } from "./globals";
+import type { FlatConfig } from "@eslint/compat";
 
 const config = [
-  ...baseConfig,
+  ...(baseConfig as FlatConfig[]),
   {
-    files: ["*.{js,jsx,ts,tsx}"],
+    files: ["**/*.{js,jsx,ts,tsx}"],
     plugins: {
       "react-native": fixupPluginRules(reactNative),
+    },
+    rules: {
+      ...reactNative.configs.all.rules,
     },
     languageOptions: {
       parserOptions: { ecmaFeatures: { jsx: true } },
