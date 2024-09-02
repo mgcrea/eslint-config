@@ -24,7 +24,6 @@ const config: NoPromise<Config> = tseslint.config(
       "@typescript-eslint/no-unnecessary-type-parameters": "off",
       "@typescript-eslint/no-unused-vars": [ "warn", { ignoreRestSiblings: true, argsIgnorePattern: "^_", varsIgnorePattern: "^_" },],
       "@typescript-eslint/restrict-template-expressions": ["warn", { allowNumber: true }],
-      "react/react-in-jsx-scope": "off",
     },
   },
   {
@@ -41,6 +40,7 @@ const config: NoPromise<Config> = tseslint.config(
     rules: {
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
+      "react/react-in-jsx-scope": "off",
     },
     settings: {
       react: {
