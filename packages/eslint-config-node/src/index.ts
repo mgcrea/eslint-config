@@ -12,14 +12,15 @@ const config: NoPromise<Config> = tseslint.config(
   prettierRecommended,
   {
     rules: {
-      "@typescript-eslint/restrict-template-expressions": ["warn", { allowNumber: true }],
+      "@typescript-eslint/ban-ts-comment": ["error", { minimumDescriptionLength: 3 }],
+      "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
+      "@typescript-eslint/no-unnecessary-condition": ["warn"],
+      "@typescript-eslint/no-unnecessary-type-parameters": "off",
       "@typescript-eslint/no-unused-vars": [
         "warn",
         { ignoreRestSiblings: true, argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
-      "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
-      "@typescript-eslint/no-unnecessary-condition": ["warn"],
-      "@typescript-eslint/ban-ts-comment": ["error", { minimumDescriptionLength: 3 }],
+      "@typescript-eslint/restrict-template-expressions": ["warn", { allowNumber: true }],
     },
   },
   {
