@@ -12,7 +12,7 @@ const config = [
       "react-native": fixupPluginRules(reactNative),
     },
     rules: {
-      ...reactNative.configs.all.rules,
+      "react-native/platform-colors": "warn"
     },
     languageOptions: {
       parserOptions: { ecmaFeatures: { jsx: true } },
