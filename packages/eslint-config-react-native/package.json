@@ -1,6 +1,6 @@
 {
   "name": "@mgcrea/eslint-config-react-native",
-  "version": "0.12.11",
+  "version": "0.12.12",
   "description": "Eslint config for React Native applications",
   "author": "Olivier Louvignes <olivier@mgcrea.io>",
   "repository": "github:mgcrea/eslint-config",
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@eslint/compat": "^1.2.0",
-    "@mgcrea/eslint-config-react": "0.12.11",
+    "@mgcrea/eslint-config-react": "0.12.12",
     "@react-native/eslint-plugin": "^0.75.4"
   },
   "devDependencies": {
