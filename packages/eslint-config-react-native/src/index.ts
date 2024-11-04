@@ -1,8 +1,8 @@
+import type { FlatConfig } from "@eslint/compat";
 import { fixupPluginRules } from "@eslint/compat";
 import baseConfig from "@mgcrea/eslint-config-react";
 import reactNative from "@react-native/eslint-plugin";
 import { globals } from "./globals";
-import type { FlatConfig } from "@eslint/compat";
 
 const config = [
   ...(baseConfig as FlatConfig[]),
@@ -12,7 +12,7 @@ const config = [
       "react-native": fixupPluginRules(reactNative),
     },
     rules: {
-      "react-native/platform-colors": "warn"
+      "react-native/platform-colors": "warn",
     },
     languageOptions: {
       parserOptions: { ecmaFeatures: { jsx: true } },

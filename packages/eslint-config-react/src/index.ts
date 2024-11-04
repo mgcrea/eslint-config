@@ -22,7 +22,10 @@ const config: NoPromise<Config> = tseslint.config(
       "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
       "@typescript-eslint/no-unnecessary-condition": ["warn"],
       "@typescript-eslint/no-unnecessary-type-parameters": "off",
-      "@typescript-eslint/no-unused-vars": [ "warn", { ignoreRestSiblings: true, argsIgnorePattern: "^_", varsIgnorePattern: "^_" },],
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { ignoreRestSiblings: true, argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      ],
       "@typescript-eslint/restrict-template-expressions": ["warn", { allowNumber: true }],
     },
   },
@@ -45,7 +48,7 @@ const config: NoPromise<Config> = tseslint.config(
     settings: {
       react: {
         version: "detect",
-      }
+      },
     },
   },
   {
