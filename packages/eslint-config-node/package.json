@@ -1,6 +1,6 @@
 {
   "name": "@mgcrea/eslint-config-node",
-  "version": "0.12.13",
+  "version": "0.12.14",
   "description": "Eslint config for Node.js applications",
   "author": "Olivier Louvignes <olivier@mgcrea.io>",
   "repository": "github:mgcrea/eslint-config",
