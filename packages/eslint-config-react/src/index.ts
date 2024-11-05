@@ -61,6 +61,7 @@ const config: NoPromise<Config> = tseslint.config(
       ...testingLibrary.configs["flat/react"].rules,
       ...vitest.configs.recommended.rules,
       "@typescript-eslint/no-unsafe-assignment": "off",
+      "@typescript-eslint/no-unsafe-call": "off",
     },
   },
 );
