@@ -1,11 +1,11 @@
-import type { FlatConfig } from "@eslint/compat";
 import { fixupPluginRules } from "@eslint/compat";
 import baseConfig from "@mgcrea/eslint-config-react";
 import reactNative from "@react-native/eslint-plugin";
+import type { Linter } from "eslint";
 import { globals } from "./globals";
 
 const config = [
-  ...(baseConfig as FlatConfig[]),
+  ...baseConfig,
   {
     files: ["**/*.{js,jsx,ts,tsx}"],
     plugins: {
@@ -19,6 +19,6 @@ const config = [
       globals: { ...globals },
     },
   },
-];
+] satisfies Linter.Config[];
 
 export default config;
