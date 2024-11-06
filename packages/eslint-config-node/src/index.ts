@@ -1,5 +1,6 @@
 import eslint from "@eslint/js";
 import vitest from "@vitest/eslint-plugin";
+import { type Linter } from "eslint";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
 import tseslint, { type Config } from "typescript-eslint";
 
@@ -33,6 +34,6 @@ const config: NoPromise<Config> = tseslint.config(
       "@typescript-eslint/no-unsafe-assignment": "off",
     },
   },
-);
+) as Linter.Config[];
 
 export default config;
