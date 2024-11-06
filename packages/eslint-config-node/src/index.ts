@@ -2,11 +2,9 @@ import eslint from "@eslint/js";
 import vitest from "@vitest/eslint-plugin";
 import { type Linter } from "eslint";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
-import tseslint, { type Config } from "typescript-eslint";
+import tseslint from "typescript-eslint";
 
-type NoPromise<T> = T extends Promise<unknown> ? never : T;
-
-const config: NoPromise<Config> = tseslint.config(
+const config= tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.strictTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
