@@ -32,7 +32,7 @@ const config = tseslint.config(
     },
   },
   {
-    files: ["**/*.{js,jsx,ts,tsx}"],
+    files: ["**/*.{ts,tsx}"],
     plugins: {
       react,
       "react-hooks": reactHooks,
