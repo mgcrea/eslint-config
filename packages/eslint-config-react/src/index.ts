@@ -11,13 +11,13 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 const config = tseslint.config(
-  { ignores: ['dist'] },
+  { ignores: ["dist"] },
   {
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.strictTypeChecked,
       ...tseslint.configs.stylisticTypeChecked,
-      prettierRecommended
+      prettierRecommended,
     ],
     rules: {
       "@typescript-eslint/ban-ts-comment": ["error", { minimumDescriptionLength: 3 }],
@@ -45,10 +45,7 @@ const config = tseslint.config(
     rules: {
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
+      "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
       "react/react-in-jsx-scope": "off",
     },
     settings: {
