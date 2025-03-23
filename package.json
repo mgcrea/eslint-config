@@ -16,23 +16,22 @@
     "test": "npm run lint && npm run prettycheck && npm run typecheck"
   },
   "devDependencies": {
-    "@eslint/js": "^9.19.0",
+    "@eslint/js": "^9.23.0",
     "@release-it-plugins/workspaces": "^4.2.0",
     "@tsconfig/node-lts": "^22.0.1",
     "@tsconfig/strictest": "^2.0.5",
-    "@types/eslint__js": "^8.42.3",
-    "@types/node": "^22.10.10",
-    "@vitest/eslint-plugin": "^1.1.25",
-    "eslint": "^9.19.0",
-    "eslint-config-prettier": "^10.0.1",
+    "@types/node": "^22.13.11",
+    "@vitest/eslint-plugin": "^1.1.38",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.3",
-    "globals": "^15.14.0",
-    "prettier": "^3.4.2",
+    "globals": "^16.0.0",
+    "prettier": "^3.5.3",
     "prettier-plugin-organize-imports": "^4.1.0",
-    "release-it": "^17.0",
+    "release-it": "^17.11.0",
     "rimraf": "^6.0.1",
-    "typescript": "^5.7.3",
-    "typescript-eslint": "^8.22.0"
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.27.0"
   },
-  "packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0"
+  "packageManager": "pnpm@10.6.5"
 }
