@@ -24,6 +24,7 @@ const config = tseslint.config(
       "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
       "@typescript-eslint/no-unnecessary-condition": ["warn"],
       "@typescript-eslint/no-unnecessary-type-parameters": "off",
+      "@typescript-eslint/no-confusing-void-expression": ["error", { ignoreArrowShorthand: true }],
       "@typescript-eslint/no-unused-vars": [
         "warn",
         { ignoreRestSiblings: true, argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
