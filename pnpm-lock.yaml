@@ -60,7 +60,7 @@ importers:
   packages/eslint-config-astro:
     dependencies:
       '@mgcrea/eslint-config-react':
-        specifier: 0.13.0
+        specifier: 0.14.0
         version: link:../eslint-config-react
       eslint-plugin-astro:
         specifier: ^1.5.0
@@ -243,7 +243,7 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0(eslint@9.39.1(jiti@2.6.1))
       '@mgcrea/eslint-config-react':
-        specifier: 0.13.0
+        specifier: 0.14.0
         version: link:../eslint-config-react
       '@react-native/eslint-plugin':
         specifier: ^0.82.1
