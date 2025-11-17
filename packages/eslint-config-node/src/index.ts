@@ -1,10 +1,10 @@
 import eslint from "@eslint/js";
 import vitest from "@vitest/eslint-plugin";
-import { type Linter } from "eslint";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
+import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
 
-const config = tseslint.config(
+const config = defineConfig(
   eslint.configs.recommended,
   ...tseslint.configs.strictTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
@@ -32,6 +32,6 @@ const config = tseslint.config(
       "@typescript-eslint/no-unsafe-assignment": "off",
     },
   },
-) as Linter.Config[];
+);
 
 export default config;

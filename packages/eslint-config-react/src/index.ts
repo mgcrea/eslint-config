@@ -1,16 +1,16 @@
 import { fixupPluginRules } from "@eslint/compat";
 import eslint from "@eslint/js";
 import vitest from "@vitest/eslint-plugin";
-import type { Linter } from "eslint";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import testingLibrary from "eslint-plugin-testing-library";
+import { defineConfig } from "eslint/config";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
-const config = tseslint.config(
+const config = defineConfig(
   { ignores: ["dist"] },
   {
     extends: [
@@ -68,6 +68,6 @@ const config = tseslint.config(
       "@typescript-eslint/no-unsafe-call": "off",
     },
   },
-) as Linter.Config[];
+);
 
 export default config;
