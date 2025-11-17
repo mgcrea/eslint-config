@@ -10,7 +10,13 @@ const config = defineConfig(...baseConfig, {
     "react-native": fixupPluginRules(reactNative),
   },
   rules: {
+    "react/no-unescaped-entities": "off",
     "react-native/platform-colors": "warn",
+    "@typescript-eslint/no-confusing-void-expression": ["error", { ignoreArrowShorthand: true }],
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      { checksVoidReturn: { attributes: false, variables: false } },
+    ],
   },
   languageOptions: {
     parserOptions: { ecmaFeatures: { jsx: true } },
