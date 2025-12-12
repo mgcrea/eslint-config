@@ -38,18 +38,18 @@
     "eslint-plugin-astro": "^1.5.0"
   },
   "devDependencies": {
-    "@microsoft/api-extractor": "^7.55.0",
-    "@tsconfig/node-lts": "^22.0.3",
+    "@microsoft/api-extractor": "^7.55.2",
+    "@tsconfig/node-lts": "^24.0.0",
     "@tsconfig/strictest": "^2.0.8",
     "@types/eslint": "^9.6.1",
-    "@types/node": "^24.10.1",
+    "@types/node": "^24.10.3",
     "eslint": "^9.39.1",
-    "prettier": "^3.6.2",
+    "prettier": "^3.7.4",
     "prettier-plugin-organize-imports": "^4.3.0",
-    "rimraf": "^6.1.0",
+    "rimraf": "^6.1.2",
     "tsup": "^8.5.1",
-    "tsx": "^4.20.6",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.10"
+    "vitest": "^4.0.15"
   }
 }
